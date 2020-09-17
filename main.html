@@ -1,0 +1,157 @@
+<script src="http://localhost:771/dafeem/ayzer.js"></script>
+<div id="lg">
+B"H 
+hello
+</div>
+<script>
+
+
+
+new Achdus.Domem({
+	scale: {
+		x: 500,
+		y:0.5,
+		z:50
+		
+	},
+	position: {
+		y: -2,
+		x:100
+	}
+})
+
+
+new Achdus.Domem({
+	//model:"models/eretz1.gltf",
+	Init: function(m) {
+		m.Neefgash = new Achdus.Davar({
+			toldos:true,
+			meen: "mesh"
+		})
+	},
+	position: {
+		y: -2
+	}
+})
+
+Achdus.Cob.on("log", function(e) {
+	lg.innerHTML = e + "<br>" + lg.innerHTML
+})
+var colors = [
+	"red",
+	"blue",
+	"white",
+	"purple",
+	"pink",
+	"black",
+	"brown",
+	"green",
+	"yellow",
+	"orange",
+	"gold"
+	
+]
+var dvarim = []
+for(var k = 0; k < 32; k++) {
+	new Achdus.Domem({
+		Init: function(m) {
+			m.color = colors[
+				Math.floor(
+					Math.random() *
+					colors.length
+				)
+			]
+			dvarim.push(m)
+		},
+		position: {
+			x: k,
+			y: 2,// + Math.random() * 5,
+			z: 6
+		}
+	})
+}
+new Achdus.Chossid({
+	HeessCheel:function(m) {
+		m.PlayChayoos("standing")
+		m.gameObject.tag = "Player"
+		var makor = (
+			Achdus
+			.KolDodi
+			.BorayKolMakor(m.gameObject)
+		)
+		console.log(makor)
+		
+		console.log("muhk ", makor)
+		var floyt = null;
+		var cur = 0,
+			last = 0
+		var rek = Achdus
+			.KolDodi
+			.GetKol
+			(
+				"http://localhost:771" + 
+				"/audio/niggoon1aymuhseye.wav",
+				function(clap) {
+					
+					makor.kol = clap
+					makor.Play()
+					floyt = (
+							Achdus
+							.Yisayruh
+							.float32()
+						)
+					console.log("hi " 
+					+ clap.kol, floyt);
+					var things = []
+					
+					
+					
+					
+				}
+			)
+		function wow(d) {
+			if(!d) d = []
+			makor
+			.GetOutputData(
+				floyt,
+				1,
+				function(d) {
+					if(!d) d = []
+					dvarim.forEach(
+						function(m, i) {
+							if(!m) m = {
+								position: {}
+							}
+		
+							m.position = {
+								y: d[i] * 8,
+								x: m.position.x,
+								z: m.position.z
+							}
+							
+						}
+					)
+					
+				}
+			)
+			cur++
+			
+		}
+	//	var sand = rek.SendWebRequest()
+		m.on("HissHavoos", function() {
+			if(floyt != null) {
+				if(cur >= last) {
+					wow()
+					last = cur
+				}
+				
+			}
+		})
+		
+	},
+	model:"models/charofcharz10.gltf"
+})
+
+
+
+</script>
