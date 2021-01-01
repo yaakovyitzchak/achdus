@@ -1,4 +1,4 @@
-#B"H
+B"H
 # achdus
 B"H
 welcome
@@ -22,7 +22,9 @@ Basically once its running, it sets up a virtual webcam (that i did not make, or
 
 that can be installed on windows 64 at least in the "UnityCapture-master" folder (that I just downloaded from the original
 author's github somewhere) then once its installed you can stream the unity player output to the webcam (its already set up)
-Just go to the Install folder there and click on the .bat
+Just go to the Install folder there, and then click "Install.bat" and it should theoretically set it up, then all you 
+have to do is open up, either the unity project in the enclosing folder there and try the test project they made,
+or just open to doogmah (after opening the .ach with Achdus770.exe as explained) and the stream should start
 
 I just made some minor modifications to make it always stream 1920 by 1080 no matter what scale the window is, although all of the
 actual heavy lifting was done from the original author
