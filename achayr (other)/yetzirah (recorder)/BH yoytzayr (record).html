@@ -1,0 +1,92 @@
+B"H
+<button id=b>ok</button>
+<button id="awd">koyl</button>
+<audio id=aud controls></audio>
+<br><video muted autoplay id=v></video>
+
+<script>
+var k = 1,
+	aCtx, lyzer, source,
+	aa
+awd.onclick = () => {
+	if(!k) {
+		k = true
+		awd.innerHTML = "ok you selected it"
+		var f = document.createElement("input")
+		f.type = "file"
+		f.click()
+		f.onchange = e => {
+			fetch(URL.createObjectURL(f.files[0]))
+			.then(b => b.blob())
+			.then(b => {
+				aud
+				.src = URL.createObjectURL(b)
+				
+				aa = aud.captureStream()
+				
+				aCtx = new AudioContext()
+				
+				lyzer = aCtx
+					.createAnalyser()
+					
+				source = aCtx
+					.createMediaStreamSource(aa)
+
+				source.connect(lyzer);
+				lyzer.connect(aCtx.destination)
+			})
+		}
+		
+		
+		
+	} else {
+		k = false
+		awd.innerHTML = "more audio!?"
+	}
+}
+var o = false
+b.onclick = () => {
+	if(!o) {
+		navigator.mediaDevices
+		.getUserMedia({
+			video: {
+				width:{ideal:1920},
+				height:{ideal:1080}
+			},
+			audio:{
+				deviceId:
+				"default"
+			}
+		/*	deviceId: 
+	"f777febf9d10a23c0ca4305fdf5863862c21b947a21e511415dab08161aa9bff"*/
+		})
+		.then(s => {
+		//	aud.srcObject = s
+		//	aud.play()
+			v.srcObject = s
+			/*var str = v.captureStream()
+			str.addTrack(
+				s.getAudioTracks()[0]
+			)*/
+			/*if(aa) {
+				str.addStream(aa)
+			}*/
+			mr = new MediaRecorder(s, {
+			/*	mimeType: "video/webm; codecs=h264",*/
+				videoBitsPerSecond:77000000
+			})
+			mr.start()
+			mr.ondataavailable = e=> {
+				var a = document.createElement("a")
+				a.href = URL.createObjectURL(e.data)
+				a.download = "BH_hoy_"+Date.now() + ".mp4"
+				a.click()
+			}
+		})
+		o = true
+	} else {
+		mr.stop()
+		o = false
+	}
+}
+</script>
