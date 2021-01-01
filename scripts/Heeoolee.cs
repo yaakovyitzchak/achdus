@@ -5,12 +5,9 @@ using UnityEngine;
 using System;
 using Jint.Native;
 namespace Achdus {
-    public class Heeoolee {
-        private Dictionary<string, List<Func<object, object>>> peulosAchshawv = new Dictionary<string, List<Func<object, object>>>();
-		
-		public Davar cald = 
-		new Davar();
-		
+    public class Heeoolee : Chochmah{
+      
+		public string meen;
 		private Dictionary<
 			string,
 			object
@@ -26,8 +23,11 @@ namespace Achdus {
             position  
             rotation 
             scale 
+            ";
+		private string propertiesToCopyLater = @"
+            color  
             texture 
-            color";
+            ";
 
         private string _textureStr;
         private Texture _actualTexture;
@@ -36,8 +36,8 @@ namespace Achdus {
                 return _actualTexture;
             }
             set {
-				if(value is string)
-					SetMyTexture(value as string);
+                if(value is string)
+                    SetMyTexture(value as string);
 				else SetTexture(value);
             }
         }
@@ -123,12 +123,14 @@ namespace Achdus {
                 Set("isTrigger", value);
             }
         }
-
+		
+		private Kav3 _position = new Kav3();
+		private Kav3 _scale = new Kav3();
+		private Kav3 _rotation = new Kav3();
+		
         public object position {
             get {
-                return gameObject != null &&
-                        gameObject.transform != null ? gameObject.transform.position : new Vector3();
-
+                return _position;
             }
             set {
                 if (gameObject != null && gameObject.transform != null) {
@@ -140,19 +142,24 @@ namespace Achdus {
                     else if (value is Vector3) {
                         newVector = (Vector3)value;
                     }
-                    gameObject.transform.position = newVector;
+					_position.Set(newVector);
                     if (controller != null && controller.enabled == true) {
-                        controller.transform.SetPositionAndRotation(gameObject.transform.position, gameObject.transform.rotation);
+                        controller
+						.transform
+						.SetPositionAndRotation(
+							gameObject
+							.transform
+							.position, 
+							gameObject.transform.rotation
+						);
                     }
                 }
-                Set("position", value);
             }
         }
 
         public object scale {
             get {
-                return gameObject != null &&
-                        gameObject.transform != null ? gameObject.transform.localScale : new Vector3();
+                return _scale;
 
             }
             set {
@@ -165,17 +172,15 @@ namespace Achdus {
                     else if (value is Vector3) {
                         newVector = (Vector3)value;
                     }
-                    gameObject.transform.localScale = newVector;
+					 _scale.Set(newVector);
                 }
-                Set("scale", value);
+               
             }
         }
 
         public object rotation {
             get {
-                return gameObject != null &&
-                        gameObject.transform != null ? gameObject.transform.rotation : Quaternion.Euler(0, 0, 0);
-
+                return _rotation;
             }
             set {
                 if (gameObject != null && gameObject.transform != null) {
@@ -190,9 +195,10 @@ namespace Achdus {
                     else if (value is Quaternion) {
                         newVector = (Quaternion)value;
                     }
-                    gameObject.transform.rotation = newVector;
+					
+					 _rotation.Set(newVector);
                 }
-                Set("rotation", value);
+               
             }
         }
 		private Clickable _clickable = null;
@@ -266,7 +272,7 @@ namespace Achdus {
         public Heeoolee(JsValue data) : this(new Davar(data)) { }
 
 
-		string tmpName = "";
+		public string tmpName = "";
 		
         public Heeoolee(Davar data) {
             this.data = data;
@@ -285,8 +291,15 @@ namespace Achdus {
                 }  
             }
 			
-			on("HeessCheel", new Func<object, object>((o) => {
-				//Debug.Log(" testing WOW!?");
+			
+			
+			on("Neeor", new Func<object, object>((o) => {
+				if(data["color"] != null) {
+					color = data["color"];
+				}
+				if(data["texture"] != null) {
+					texture = data["texture"];
+				}
 				return null;
 			}));
          //   Init();
@@ -321,7 +334,10 @@ namespace Achdus {
         public override string ToString() {
             return properties.ToString();
         }
-        public void Define(string propertyName, dynamic value) {
+		
+        public void Define(
+			string propertyName, dynamic value
+		) {
             properties[propertyName] = value;
         }
 
@@ -477,27 +493,9 @@ namespace Achdus {
             }
         }
 		
-		public void onOrNow
-		(
-			string eventName, 
-			Func<object, object> action
-		) {
-			if(
-				cald[eventName] != null
-			) {
-				action?.Invoke(cald[eventName]);
-			} else {
-				on(eventName, action);
-			}
-		}
 		
-		public void AyshPeula(string peulaShaym, object dvarim) {
-			if (peulosAchshawv.ContainsKey(peulaShaym)) {
-				peulosAchshawv[peulaShaym]
-					.ForEach(x => x(dvarim));
-			}
-			cald[peulaShaym] = true;
-		}
+		
+		
 		
 		public static JsValue JewS(object mah) {
 			return JsValue.FromObject(
@@ -505,25 +503,7 @@ namespace Achdus {
 				mah
 			);
 		}
-		
-        public void on(string eventName, Func<object, object> action) {
-            if (!peulosAchshawv.ContainsKey(eventName)) {
-                peulosAchshawv[eventName] = new List<Func<object, object>>();
-            }
-			
-            peulosAchshawv[eventName].Add((object tmp) => {
 
-                action?.Invoke(tmp);
-                return null;
-            });
-
-        }
-
-        public void clear(string eventName) {
-            if (peulosAchshawv.ContainsKey(eventName)) {
-                peulosAchshawv[eventName].Clear();
-            }
-        }
 
         
 
@@ -562,6 +542,100 @@ namespace Achdus {
             else {
                 Debug.Log("yu got nulld");
             }
+			
+			_position.Set(
+				gameObject.transform.position
+			);
+			
+			_position.on(
+				"shinuy", 
+				new System.Func<object, object>(
+					(ok) => {
+						
+						var d = ok as Davar;
+						Vector3 newVec = new Vector3(
+							gameObject.transform.position.x,
+							gameObject.transform.position.y,
+							gameObject.transform.position.z
+						);
+						switch(d["property"]) {
+							case "x":
+							newVec.x = d["value"];
+							break;
+							case "y":
+							newVec.y = d["value"];
+							break;
+							case "z":
+							newVec.z = d["value"];
+							break;
+						}
+
+						gameObject.transform.position = newVec;
+						return null;
+					}
+				)
+			);
+			_rotation.Set(
+				gameObject.transform.rotation
+			);
+			
+			_rotation.on(
+				"shinuy", 
+				new System.Func<object, object>(
+					(ok) => {
+						
+						var d = ok as Davar;
+						Vector3 newVec = _rotation.ToVector3();
+						switch(d["property"]) {
+							case "x":
+							newVec.x = d["value"];
+							break;
+							case "y":
+							newVec.y = d["value"];
+							break;
+							case "z":
+							newVec.z = d["value"];
+							break;
+						}
+						
+						gameObject.transform.eulerAngles = newVec;
+
+						return null;
+					}
+				)
+			);
+			_scale.Set(
+				gameObject.transform.localScale
+			);
+			
+			_scale.on(
+				"shinuy", 
+				new System.Func<object, object>(
+					(ok) => {
+						
+						var d = ok as Davar;
+						Vector3 newVec = new Vector3(
+							gameObject.transform.localScale.x,
+							gameObject.transform.localScale.y,
+							gameObject.transform.localScale.z
+						);
+						switch(d["property"]) {
+							case "x":
+							newVec.x = d["value"];
+							break;
+							case "y":
+							newVec.y = d["value"];
+							break;
+							case "z":
+							newVec.z = d["value"];
+							break;
+						}
+
+						gameObject.transform.localScale = newVec;
+						return null;
+					}
+				)
+			);
         }
 
         public Bounds LocalBounds(GameObject gb) {

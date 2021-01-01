@@ -15,22 +15,7 @@ using System.IO;
 
 namespace Achdus
 {
-    public class Kav3 {
-        public float x = 0;
-        public float y = 0;
-        public float z = 0;
-		
-		
-        Kav3(float x, float y, float z) {
-            this.x = x;
-            this.y = y;
-            this.z = z;
-        }
-
-        Kav3(float x, float y) : this(x,y,0) {}
-        Kav3(float x) : this(x,0,0) {}
-        Kav3() : this(0,0,0) {}
-    }
+    
 
 	
 
@@ -157,6 +142,20 @@ namespace Achdus
 			BorayGuf(() => {
 				_data = new Achdus.Davar(data);
 				//AyshPeula("HeessCheel", this);
+				if(
+					data["Neefgash"] is
+					Dictionary<string, object>
+				) {
+					data["Neefgash"] =
+					new Davar(data["Neefgash"]);
+				}
+				if(
+					data["Collider"] is
+					Dictionary<string, object>
+				) {
+					data["Collider"] =
+					new Davar(data["Collider"]);
+				}
 				
 				JustStart();
 				Init();
@@ -170,32 +169,54 @@ namespace Achdus
 				if(
 					modelURL != null		
 				) {
-					Siccity.GLTFUtility.Importer.LoadFromFileAsync(
+					new Achdus.Giluy(
 						modelURL,
-						new Siccity.GLTFUtility.ImportSettings(),
-						new Action<GameObject,AnimationClip[]>(( go, ans) => {
-							if(
-								data
-								["gameObject"] is
-								GameObject
-							) {
-								gameObject = 
-								data
-								["gameObject"];
-								
-								go.transform
-								.SetParent(
-									gameObject
-									.transform
-								);
-							} else {
-								gameObject = go;
+						true,
+						new System.Action<object, string> (
+							(rez, err) => {
+								if(
+									rez is byte[] bytes
+									
+								) {
+									AnimationClip[] ans = (
+										new AnimationClip[3]
+									);
+									
+									var go = Siccity
+									.GLTFUtility
+									.Importer
+									.LoadFromBytes(
+										bytes,
+										new Siccity.GLTFUtility.ImportSettings(),
+										out ans
+									);
+									
+									if(
+										data
+										["gameObject"] is
+										GameObject
+									) {
+										gameObject = 
+										data
+										["gameObject"];
+										
+										go.transform
+										.SetParent(
+											gameObject
+											.transform
+										);
+									} else {
+										gameObject = go;
+									}
+									chayoosClips = ans;
+									anotherInit(done);
+								} else if(err != null) {
+									Debug.Log(err);
+								}
 							}
-							chayoosClips = ans;
-							anotherInit(done);
-							
-						})
+						)
 					);
+					
 				} else {
 					if(
 						data
@@ -258,12 +279,28 @@ namespace Achdus
 						.Capsule
 					);
 				break;
+				case "quad":
+					rez = 
+					GameObject
+					.CreatePrimitive(
+						PrimitiveType
+						.Quad
+					);
+				break;
 				case "plane":
 					rez = 
 					GameObject
 					.CreatePrimitive(
 						PrimitiveType
 						.Plane
+					);
+				break;
+				case "cylinder":
+					rez = 
+					GameObject
+					.CreatePrimitive(
+						PrimitiveType
+						.Cylinder
 					);
 				break;
 			}
@@ -295,11 +332,11 @@ namespace Achdus
 
 		private void DealWithGasmiusCollidables() {
 			Neefgash = (
-				_data != null ? (
-					_data["Collider"] != null ?
-						_data["Collider"] :
-					_data["Neefgash"] != null ?
-						_data["Neefgash"] : null
+				data != null ? (
+					data["Collider"] != null ?
+						(data["Collider"]) :
+					data["Neefgash"] != null ?
+						(data["Neefgash"]) : null
 				) : null
 			);
 		}

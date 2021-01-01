@@ -13,11 +13,27 @@ public class COBY : MonoBehaviour
 {
     public string serverURL = null;
     public string serverID = null;
+	
     public static Dictionary<string, List<Action>> callbacks = new Dictionary<string, List<Action>>();
     public static Dictionary<string, float> Axis = new Dictionary<string, float>();
     public static Assembly asm;
     public static string codeURL = null;
+	
     public static List<Action> queueOfActionsInMainThread = new List<Action>();
+	
+	public static List<
+		Dictionary<
+			Achdus.Tzomayach, 
+			string
+		>
+	> chayoosQs = 
+	new List<
+		Dictionary<
+			Achdus.Tzomayach, 
+			string
+		>
+	>();
+	
     public static void print(string msg)
     {
         try {
@@ -293,14 +309,41 @@ public class COBY : MonoBehaviour
     }
 
 
-
+	
     void Update()
     {
         if(callbacks.ContainsKey("Update"))
         {
-            callbacks["Update"].ForEach(x=>x());
+            callbacks["Update"]
+			.ToList()
+			.ForEach(x=>x());
         }
 
+		/*if(chayoosQs.Count > 0) {
+			
+			for(
+				var i = 0;
+				i < chayoosQs.Count; 
+				i++
+			) {
+				foreach(var k in chayoosQs[i]) {
+					var tzo = k.Key as Achdus.Tzomayach;
+		
+					if(tzo.chayoos != null) {
+					
+						tzo
+						.chayoos
+						.Play(k.Value as string);
+						Debug.Log("ok now" + k.Value + 
+						k.Key);
+						chayoosQs.RemoveAt(
+							i
+						);
+					}
+				}
+			}
+		}*/
+		
         if (queueOfActionsInMainThread.Count > 0)
         {
             for(var i = 0; i < queueOfActionsInMainThread.Count; i++) {
@@ -326,7 +369,9 @@ public class COBY : MonoBehaviour
 
         if (callbacks.ContainsKey("FixedUpdate"))
         {
-            callbacks["FixedUpdate"].ForEach(x => x());
+            callbacks["FixedUpdate"]
+			.ToList()
+			.ForEach(x => x());
         }
     }
 
@@ -334,7 +379,9 @@ public class COBY : MonoBehaviour
     {
         if (callbacks.ContainsKey("LateUpdate"))
         {
-            callbacks["LateUpdate"].ForEach(x => x());
+            callbacks["LateUpdate"]
+			.ToList()
+			.ForEach(x => x());
         }
     }
 
@@ -422,12 +469,58 @@ public class COBY : MonoBehaviour
 	private static extern void Hello();
 
 	
-	Achdus.CameraController cameraComponent = null;
+	public Achdus.CameraController cameraComponent = null;
+	public Camera ikarAyin = null;
+	public Camera shneeuh = null;
+	public Achdus.Domem ayinShaynee = null;
+	public Achdus.Domem ayin = null;
     void Start()
     {
+		ikarAyin = GetComponent<Camera>();
 		cameraComponent = GetComponent<
 			Achdus.CameraController
 		>();
+		var shnee = GameObject.Find(
+			"shneeuh78"
+		);
+		/*ayin = new Achdus.Domem(new Achdus.Davar(new Dictionary<
+				string,
+				object
+			>{
+				{"gameObject", gameObject}
+			})
+		);*/
+		if(shnee != null) {
+			//ayinShaynee = new Achdus.Domem(new Achdus.Davar(
+			//);
+			/*var dict = new Dictionary<
+					string,
+					object
+				>() {
+					{"gameObject", shnee}
+				};
+			var dav = new Achdus.Davar(
+				dict
+			);
+			ayinShaynee = new Achdus.Domem(dav);*/
+			
+			
+			Achdus.Yaakov.on("Update", () => {
+				shnee.transform.position = gameObject.transform.position;
+				shnee.transform.rotation = gameObject.transform.rotation;
+				//shnee.transform.Rotate(0f, 0.0f, 180.0f);
+				/*shnee.transform.rotation = new Quaternion(
+					gameObject.transform.rotation.x + (180 * ((float)Math.PI) / 180),
+					gameObject.transform.rotation.y,
+					gameObject.transform.rotation.z, 1f
+				);*/
+				//ayinShaynee.position = ayin.position;
+			});
+			shneeuh = shnee.GetComponent<Camera>();
+			Matrix4x4 mat = Camera.main.projectionMatrix;
+			mat *= Matrix4x4.Scale(new Vector3(-1, 1, 1));
+		//	shneeuh.projectionMatrix = mat;
+		}
 		/*string uis = "http://localhost:8000/ok.sk";
 		Debug.Log("hey , its me");
 		Debug.Log(URIHelper.GetDirectoryName(uis));
@@ -539,10 +632,16 @@ public class COBY : MonoBehaviour
 	
 	void Brutalize(string path, Action<bool> cb) {
 		bool isData = false;
+		bool isAndFirst = false;
 		if(Application.platform == RuntimePlatform.WebGLPlayer) {
 			path = Application.dataPath + "/" + path;
 			isData = true;
 		}
+		if(Application.platform == RuntimePlatform.Android) {
+			path = "etzem://" + path;
+			isAndFirst = true;
+		}
+		
 		new Achdus
 		.Giluy(
 			path,
@@ -552,7 +651,9 @@ public class COBY : MonoBehaviour
 						if(!isData)
 						new Achdus
 						.Giluy(
-							"etzem://" + path,
+							!isAndFirst ?
+								"etzem://" :
+							"" + path,
 							new Action<object, string>(
 								(rez2, err2) => {
 									if(err2 != null) {
@@ -959,6 +1060,36 @@ namespace Achdus
             if(!COBY.callbacks.ContainsKey(func)) COBY.callbacks[func] = new List<Action>();
             COBY.callbacks[func].Add(cb);
         }
+		
+		public static bool removeEvent(
+			string fnc, 
+			Action ac
+		) {
+			if(COBY.callbacks.ContainsKey(fnc)) {
+				var index = COBY
+					.callbacks[fnc]
+					.IndexOf(ac);
+				if(index > -1) {
+					COBY.callbacks[fnc].RemoveAt(index);
+					return true;
+				} else return false;
+			} else return false;
+		}
+		
+		public static void require(string pth) {
+			new Giluy(
+				pth,
+				new Action<object, string>((r, e) => {
+					if(e == null) {
+						var k = r as string;
+						Debug.Log(r as string);
+						PowerUI.UI.Html += "<script>" + 
+						k +
+						"</script>";
+					}
+				})
+			);
+		}
 
         
     }

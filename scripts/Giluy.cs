@@ -7,12 +7,48 @@ using System;
 namespace Achdus {
 
     public class Giluy {
+		public static System.Threading.Thread giluyChoot = null;
+		public static Queue<Dictionary<
+			string,
+			Action<
+				object,
+				string
+			>
+		>> qz = new Queue<Dictionary<
+			string,
+			Action<
+				object,
+				string
+				
+			>
+		>>();
+		public static bool isKorayingKoysayving = false;
         public string path;
         public dynamic cb;
 		public bool isBinary = false;
         public Giluy(object path) : this(path, null) { }
 		public Giluy(object path, object cb) : this(path, false, cb){}
         public Giluy(object path, bool bine, object cb) {
+			if(giluyChoot == null) {
+				isKorayingKoysayving = true;
+				/*giluyChoot = new System.Threading.Thread(() => {
+					while(isKorayingKoysayving) {
+						while(qz.Count > 0) {
+							var dq = qz.Dequeue();
+							foreach(var k in dq) {
+								var r = new System.IO.StreamReader(k.Key );
+
+								var result = r.ReadToEnd();
+								r.Close();
+								Yaakov.IkarThread(() => 
+									k.Value(result, null)
+								);
+							}
+						}
+					}
+				});
+				giluyChoot.Start();*/
+			}
 			isBinary = bine;
             if(path is string str) {
                 this.path = str;
@@ -95,36 +131,50 @@ namespace Achdus {
 
 					var pers = "etzem://";
 					var dayt = "dayuh://";
-
+			
+					
 					if(
 						path.Length > pers.Length &&
-						path.Substring(0, pers.Length + 1)
+						path.Substring(0, pers.Length)
 						.IndexOf(pers) > -1
 					) {
+
 						path = (
 							Application.persistentDataPath + "/" +
 							path.Substring(
-								pers.Length, path.Length
+								pers.Length
 							)
 						);
 					}
 					
 					if(
 						path.Length > dayt.Length &&
-						path.Substring(0, dayt.Length + 1)
+						path.Substring(0, dayt.Length)
 						.IndexOf(dayt) > -1
 					) {
 						path = (
 							Application.dataPath + "/" +
 							path.Substring(
-								dayt.Length, path.Length
+								dayt.Length
 							)
 						);
 					}
 					
+					
 					if(!isBinary) {
 						var result = "";
 						try {
+							/*qz.Enqueue(
+								new Dictionary<
+									string,
+									Action<object, string>
+								>() {
+									{
+										path,
+										cb
+									}
+								}
+							);*/
 							var r = new System.IO.StreamReader(path);
 
 							result = r.ReadToEnd();

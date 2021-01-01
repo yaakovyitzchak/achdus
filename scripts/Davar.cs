@@ -256,12 +256,25 @@ namespace Achdus {
        //     clearEventListeners();
             if (value is Func<JsValue, JsValue[], JsValue> func) addEventListener(isit, func);
         }
-
-        public void send(JsValue val) {
-            var str = val.AsString();
+		
+		
+		
+        public void send(string str) {
+            //var str = val.AsString();
             _socket.Send(Encoding.UTF8.GetBytes(str));
         }
-     
+		
+		public void send(byte[] val) {
+            _socket.Send(val);
+        }
+		/*
+		public void send(Yetzirah.HaaretzDayuh val) {
+			var t = new System.Threading.Thread(() => {
+				_socket.Send(val.dahs);
+			});
+			t.Start();
+        }
+     */
     }
 
     public class DavarList  {

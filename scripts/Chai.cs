@@ -10,8 +10,6 @@ namespace Achdus
         public Rigidbody myRigid = null;
         public CapsuleCollider capsuleCollider = null;
         
-        private GameObject _modelGameObject;
-		
         public float movementSpeed = 5,
             moveH = 0,
             moveV = 0,
@@ -53,7 +51,9 @@ namespace Achdus
 
         public override void Init()
         {
+			
             base.Init();
+			meen = "chai";
             originalJumpiness = jumpiness;
             MakeParentCapsule();
             _modelGameObject = gameObject;

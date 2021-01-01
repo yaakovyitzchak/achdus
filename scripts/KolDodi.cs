@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 using System;
 using Jint.Native;
-
+using System.IO;
 namespace Achdus {
 	public class Yisayruh {
 		/*public static byte[] getFileBytes(string path) {
@@ -13,8 +13,35 @@ namespace Achdus {
 			 ) {
 			 
 			 }
+		}
+		public static void SetPropertyValue
+		(object p_object, string p_propertyName, object value) {
+			PropertyInfo property = (
+				p_object
+				.GetType()
+				.GetProperty(p_propertyName)
+			);
+			property
+			.SetValue(
+				p_object, 
+				Convert.ChangeType(
+					value, property.PropertyType
+				),
+				null
+			);
+		}
+		public static object GetPropertyValue<T>
+		(object obj, string propName) { 
+			var prop = (
+				
+				obj
+				.GetType()
+				.GetProperty(propName)
+			); 
+			if(prop != null) {
+				return (T) prop.GetValue(obj, null);
+			} else return default(T);
 		}*/
-		
 		public static float[] floater(
 			JsValue j
 		) {
@@ -39,6 +66,77 @@ namespace Achdus {
 
 	public class KolDodi
 	{
+		public static float[] ConvertByteToFloat(byte[] array) {
+		  float[] floatArr = new float[array.Length / 4];
+		  for (int i = 0; i < floatArr.Length; i++) {
+			if (BitConverter.IsLittleEndian) {
+			  Array.Reverse(array, i * 4, 4);
+			}
+			floatArr[i] = BitConverter.ToSingle(array, i * 4);
+		  }
+		  return floatArr;
+		}
+		
+		public static void Kol(
+			string path, 
+			System.Func<
+				JsValue, JsValue[], JsValue
+			> fun
+		) {
+			Kol(
+				path, new GameObject(), fun
+			);
+		}
+		
+		public static void Kol(
+			string path, 
+			GameObject go,
+			System.Func<
+				JsValue, JsValue[], JsValue
+			> fun
+		) {
+			new Giluy(
+				path,
+				true,
+				new System.Action<object, string>(
+					(rez, err) => {
+						if(rez is byte[] b) {
+							var stream = new System.IO.MemoryStream(b);
+							var mf = new NLayer.MpegFile(stream);
+							var samp = new float[
+								mf.Length
+							];
+							mf.ReadSamples(
+								samp,
+								0,
+								(int)mf.Length
+							);
+							var clap = AudioClip.Create(
+								path,
+								samp.Length,
+								mf.Channels,
+								mf.SampleRate,
+								false
+							);
+						//	clap.loadInBackground = true;
+							clap.SetData(samp,0);
+							var kold = new KolMakor(go);
+							var klip = new KolClip(clap);
+							kold.clip = klip;
+							fun(1, new JsValue[] {Heeoolee.JewS(kold)});
+						}
+						
+						if(err != null) {
+							fun(1, new JsValue[]{
+								null,
+								"dude there's an error" + err
+							});
+						}
+					}
+				)
+			);
+		}
+		
 		public class KolClip {
 			public AudioClip kol = null;
 			public KolClip(AudioClip ac) {
@@ -67,8 +165,9 @@ namespace Achdus {
 		
 		public class KolMakor {
 			public AudioSource makor = null;
-			
+			public float[] mirachefess = null;
 			private KolClip _clip = null;
+			private Action oyk = null;
 			public KolClip clip {
 				get {
 					return _clip;
@@ -124,7 +223,40 @@ namespace Achdus {
 				}
 			}
 			
+			public void HeessCheelTzayad(
+				string fncName,
+				int chnl
+			) {
+				if(mirachefess == null) {
+					mirachefess = new float[32];
+				}
+				if(oyk == null) {
+					oyk = () => {
+						makor
+						.GetOutputData(
+							mirachefess,
+							chnl
+						);
+					};
+				}
+				Yaakov.on(fncName, oyk);
+			}
 			
+			
+			
+			public void HeessCheelTzayad() {
+				HeessCheelTzayad("FixedUpdate", 0);
+			}
+			
+			public void YoyshayvTzayad() {
+				YoyshayvTzayad("FixedUpdate");
+			}
+			
+			public void YoyshayvTzayad(string fnc) {
+				if(oyk != null) {
+					Yaakov.removeEvent(fnc, oyk);
+				}
+			}
 			public void GetOutputData(
 				float[] fl,
 				int chnl,
@@ -154,7 +286,8 @@ namespace Achdus {
 		
 		public static void GetKol(
 			string url,
-			Func<JsValue, JsValue[], JsValue> fnc
+			Func<JsValue, JsValue[], 
+			JsValue> fnc
 		) {
 			var rek = (
 				UnityWebRequestMultimedia
@@ -186,4 +319,8 @@ namespace Achdus {
 			};
 		}
 	}
+	
+
+
 }
+
