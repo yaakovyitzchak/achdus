@@ -22,9 +22,9 @@ Basically once its running, it sets up a virtual webcam (that i did not make, or
 
 that can be installed on windows 64 at least in the "UnityCapture-master" folder (that I just downloaded from the original
 author's github somewhere) then once its installed you can stream the unity player output to the webcam (its already set up)
+Just go to the Install folder there and click on the .bat, as explained in their github https://github.com/sh-akira/UnityCapture#installation
 
-I ust made some minor modifications to make it always stream 1920 by 1080 no matter was scale, although all of the
-
+I just made some minor modifications to make it always stream 1920 by 1080 no matter was scale, although all of the
 actual heavy lifting was done from the original author
 
 Anyways I made a very basic recorder as an HTML file that simply records to webcam stream, you can adjust the bitrate, the
@@ -35,4 +35,6 @@ stream as a 1920 by 1080 video in chrome and if you click the button again it sh
 theoretically
 
 For any questions, leave a comment on the above quoted blog post https://moshiach77d.blogspot.com/2021/01/bh-soul-soil.html
+
+
 Blessings and success
