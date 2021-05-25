@@ -1,0 +1,521 @@
+B"H
+<style>
+.melech {
+	border: 4px dotted yellow !important;
+}
+
+.neff {
+	display:inline-block;
+	user-select:none;
+	padding:4px;
+	border: 1px solid black;
+	color: black;
+}
+
+
+
+.neff:hover {
+	cursor:pointer;
+	background: gray !important;
+	color:white;
+}
+
+.neff:active {
+	background: black !important;
+	color:white;
+}
+#btnz {
+	width:413px;
+	#height: 365px;
+	//display:flex;
+	border: 1px solid black;
+	float:left
+}
+#btnz button {
+	padding: 15px;
+	width:205px;
+	font: 15px Helvetica
+}
+
+#vdd {
+	float:left
+}
+
+#kz {
+	float:left;
+	width:413px;
+	
+	border: 1px solid purple
+}
+
+#kz button {
+	padding:15px;
+	width: 205px;
+	font: 15px Helvetica
+}
+</style>
+<br>
+<input id="tx">
+<button id="kos">Koysayv Oyseeyoys?</button>
+<button id="ch">Hoyseef Geeloy Chawdawsh?!</button>
+<button id="lv">LEave?</button>
+<button id="uma">Yo, get awdeeoy from fiL?!</button>
+<button id="paa">Play all awdeeo?!</button>
+<button id="vda">Yo, get video?!</button>
+<input id="np" value="asdf">
+<button id="brd">wow</button><br><br>
+<video id="vdd" width="613px" autoplay resizeable></video><br>
+<div id="plyrz"></div><br>
+<div id="btnz"></div>
+<div id="kz"></div>
+
+<script>
+controls(kz, [
+    [
+        "65",
+        "turn left"
+    ],
+    [
+        "68",
+        "turn right"
+    ],
+    [
+        "69",
+        "<--"
+    ],
+    [
+        "81",
+        "-->"
+    ],
+    [
+        "83",
+        "move backwards"
+    ],
+    [
+        "87",
+        "move forwards"
+    ],
+	[
+        "32",
+        "jump"
+    ],
+])
+controls(btnz,Object.entries({
+	rebtdo: "right eyebrow turn out",
+	rebtdi: "right eyebrow turn in",
+	lebtdo: "left eyebrow turn out",
+	lebtdi: "left eyebrow turn in",
+	el: "Eye left",
+	er: "Eye right",
+	eld: "Eye lids down",
+	elu: "Eye lids up",
+	ebd: "Eye brows down",
+	ebu: "Eye brows up",
+	it: "Is talking?!"
+}))
+
+var koyMawp = {
+	71: "it",
+	49: "rebtdo",
+	50: "rebtdi",
+	51: "lebtdo",
+	52: "lebtdi",
+	53: "el",
+	54: "er",
+	55: "eld",
+	56: "elu",
+	57: "ebd",
+	48: "ebu",
+}
+
+var koyz = {
+	
+}
+ch.onclick = function() {
+	chawd(Date.now()+"")
+}
+
+paa.onclick = function() {
+	for(var kq in nifawshoys) {
+		(function(k) {
+		var n = nifawshoys[k]
+		console.log(k)
+		var koyl = new KoylTrack({
+			makoyr: n.koyl,
+			onplay: function(tawk) {
+				shlawch(ws, {
+					test: {
+						[tawk ? "keydown" : "keyup"]:
+						{
+							id: k,
+							kc: "it"
+						}
+					}
+				})
+			}
+		})
+		koyl.startHissHawvoos()
+		})(kq)
+	}
+			
+}
+
+kos.onclick = function() {
+	console.log("WOW")
+	shlawch(ws, {
+		test: {
+			oyseeyoys: {
+				oyseeyoys: tx.value || "Moysheeyawch Now!",
+				id: oyD,
+				/*makom: [
+					Math.random() * 3,
+					Math.random() * 3,
+					Math.random() * 3
+				]*/
+			}
+		}
+	})
+}
+
+vda.onclick = function() {
+	navigator
+	.mediaDevices
+	.getUserMedia({
+		video: {
+			width: {
+				ideal:1920
+			},
+			height: {
+				ideal:1080
+			}
+		}
+	})
+	.then(s => {
+		vdd.srcObject = s
+		window.asdf=s
+	})
+}
+uma.onclick = function() {
+	var is = document.createElement("input")
+	is.type="file"
+	is.click()
+	is.onchange = function() {
+		fetch(URL.createObjectURL(is.files[0]))
+		.then(r=>r.blob())
+		.then(b=> {
+			var k = nifawshoys[oyD]
+			if(k) {
+				k.koyl = b
+			}
+		})
+	}
+}
+lv.onclick = function() {
+	shlawch(ws, {
+		test: {
+			someoneLeft: oyD
+		}
+	})
+}
+brd.onclick = function() {
+	if(ws) {
+		shlawch(ws, {test: np.value})
+	}
+}
+var ws;
+ws = new WebSocket("ws://localhost:771")
+ws.onopen = function() {
+	ws.onmessage = function(a) {
+	//	console.log(a.data)
+		var d = JSON.parse(a.data)
+		
+		for(var k in d) {
+			if(fncs[k]) {
+				fncs[k](d[k])
+			}
+		}
+	}
+}
+var oyD;
+var nifawshoys = []
+var curOy = 0;
+var chawdoosh = []
+var fncs = {
+	oyseeyoys(s) {
+	},
+	uid: function(i) {
+		oyD = i
+		chawd(i)
+	},
+	someoneLeft(w) {
+		if(nifawshoys[w.shaym]) {
+			delete nifawshoys[w.shaym]
+		}
+
+		Array.from(plyrz.children)
+		.forEach(x => {
+			if(x.innerHTML == w) {
+				x.parentNode.removeChild(x)
+				
+			}
+		})
+	},
+	nefeshChawdawsh: function(w) {
+		nifawshoys[w.shaym] = new Nefesh()
+	
+		var btn = document.createElement("div")
+		btn.className = "neff"
+		plyrz.appendChild(btn)
+		btn.style.background = 
+		(ar => 
+			ar[
+				Math.floor(
+					Math.random() *
+					ar.length
+				)
+			]
+		)(
+			"blue red green yellow purple orange cyan"
+			.split(" ")
+		)
+		
+		
+		btn.innerHTML = w.shaym
+		btn.onclick = function() {
+			clearMel()
+			btn.classList.add("melech")
+			oyD = curOy =w.shaym
+			
+		}
+	
+	}
+}
+
+function Nefesh() {
+	
+}
+
+function clearMel() {
+	Array.from(plyrz.children)
+	.forEach(x => {
+		if(x.classList.contains("melech")) {
+			x.classList.remove("melech")
+		}
+	})
+}
+ 
+function chawd(i) {
+	chawdoosh.push(i)
+	shlawch(ws, {
+		test: {
+			nefeshChawdawsh: {
+				shaym: i,
+				makom: {
+					x: Math.random() * 6
+				},
+				color: [
+					Math.random(),
+					Math.random(),
+					Math.random()
+				]
+			}
+		}
+	})
+}
+var kyz = []
+var poylz = {
+	78: function() {
+		kyz.filter(x=>x)
+		.forEach(x => {
+			shlawch(ws, {
+				keyup: {
+					id: oyD,
+					kc: x
+				}
+			})
+		})
+		
+		if(curOy < nifawshoys.length - 1) {
+			curOy++
+		} else curOy = 0
+		
+		clearMel()
+		Array.from(plyrz.children)
+		.forEach(x => {
+			if(x.innerHTML ==
+			nifawshoys[curOy]) {
+				x.classList.add("melech")
+				oyD = nifawshoys[curOy]
+			}
+		})
+		
+	}
+}
+
+
+onkeydown = function(e) {
+	//e.preventDefault();
+	if(!kyz[e.keyCode]) {
+		kyz[e.keyCode] = true
+		if(typeof(poylz[e.keyCode])
+			== "function") {
+			poylz[e.keyCode]()
+		}
+	} else return;
+	var koy = koyMawp[e.keyCode] || 
+		e.keyCode
+	shlawch(ws, {
+		test: {
+			keydown: {
+				id: oyD,
+				kc:koy
+			}
+		}
+	})
+}
+
+onkeyup = function(e) {
+	kyz[e.keyCode] = false
+	var koy = koyMawp[e.keyCode] || 
+		e.keyCode
+	shlawch(ws, {
+		test: {
+			keyup: 
+			{
+				id: oyD,
+				kc:koy
+			}
+		}
+	})
+}
+
+function shlawch(n, m) {
+	var f = JSON.stringify(m)
+	n.send(f)
+}
+
+function KoylTrack(ob) {
+	if(!ob) ob = {}
+	var makoyr = ob.makoyr || ob.src || ob.source || ob.makor
+	var nahar = ob.nahar || ob.stream
+	var onHissHavoos = ob.onHissHavoos ||
+		ob.onhisshavoos ||
+		ob.onplay ||
+		on.ongo
+		
+	//var a = document.createElement("audio")
+	//a.muted = true
+//	a.autoplay = true
+	//if(makoyr)
+	//	a.src = makoyr
+	//else if(nahar) 
+//		a.srcObject = nahar
+	
+	
+	data = new Uint8Array(1)
+	var lastMth = 0
+	var tawk = false
+	var aud;
+	var p;
+	
+	this.startHissHawvoos = this.start = 
+	function() {
+		var aCtx = new AudioContext()
+			
+		var aud = aCtx.createBufferSource()
+		var lyzer = aCtx
+				.createAnalyser();
+				
+		lyzer.fftSize = 32		
+		/*p = aCtx.createScriptProcessor(256,1,1)
+		p.onaudioprocess = function() {
+			
+		}*/
+		
+		aud.connect(lyzer)
+		aud.connect(aCtx.destination)
+		var amTalking = false
+		makoyr.arrayBuffer().then(ab => {
+			aCtx.decodeAudioData(ab).then(ab => {
+				aud.buffer = ab
+				aud.start(0)
+				
+				aud.loop = false
+				eVentz.push(() => {
+					lyzer.getByteTimeDomainData(data)
+					var dst = Math.abs(128 - data[0])
+					if(dst < 2) {
+						tawk = false
+						amTalking = false
+					} else {
+						amTalking = true
+						tawk = true
+					}
+					if(lastMth != tawk) {
+						if(typeof(onHissHavoos) == "function")
+							onHissHavoos(tawk)
+					}
+					lastMth = tawk;
+				})
+			})
+		})
+		
+	}
+}
+var inter
+var eVentz = []
+if(inter) clearInterval(inter)
+inter = setInterval(function() {
+	if(eVentz.length > 0)
+	eVentz.forEach(x=>x())
+	
+}, 1000 / 60)
+function controls(btn,mp) {
+
+	for(var k in mp) {
+		(function(k) {
+		var b;
+		b = document.createElement("button")
+		b.clkt = false
+		var ou = mp[k][0]
+		
+		if(!isNaN(ou)) {
+			parseInt(ou)
+		}
+		console.log("ASDD",ou)
+		b.onmousedown = function() {
+			if(!b.clkt) {
+				b.clkt = true
+				shlawch(ws, {
+					test: {
+						keydown: {
+							kc: ou,
+							id: oyD
+						}
+					}
+				})
+			}
+		}
+		b.onmouseup = function() {
+			b.clkt = false
+			shlawch(ws, {
+				test: {
+					keyup: {
+						kc: ou,
+						id: oyD
+					}
+				}
+			})
+			
+		}
+		b.onclick = function(){
+			console.log(mp[k],k)
+		}
+		b.innerHTML = mp[k][1]
+	
+		btn.appendChild(b)
+		})(k)
+	}
+}
+</script>
+

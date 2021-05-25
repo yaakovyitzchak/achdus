@@ -1,5 +1,0 @@
-B"H
-
-yo
-
-just right click on the .ach file and "open with" Achdus770.exe, which is found in the "bonay" folder (for windows 64 at least)

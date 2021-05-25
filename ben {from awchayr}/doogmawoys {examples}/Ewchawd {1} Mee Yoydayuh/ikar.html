@@ -1,0 +1,700 @@
+B"H
+hi
+
+<button id=k>kol!?</button>
+<button id=ks>koyl story</button>
+<button >just clack</button>
+
+<div id="loyg">div</div>
+<script src="ayzer.js"></script>
+<script>
+ks.onclick = function() {
+	if(wow) {
+		wow.Play()
+	}
+}
+Achdus.Cob.on("log", function(str) {
+	loyg.innerHTML = str +  "<br>" + loyg.innerHTML  
+	if(loyg.innerHTML.length > 2270)
+	loyg.innerHTML = ""
+})
+
+var st = false
+var oyk
+ var mc = Achdus.Yaakov.mainCoby.shneeuh
+ var giv
+ console.log(mc)
+ 
+ new Achdus.Domem({
+	position: {
+		x: 10,
+		z:5
+	},
+	/*scale: {
+		x:0.01,
+		y: 0.01,
+		z: 0.01
+	},*/
+	color:"orange",
+	//model: "scene.gltf"
+	//model: "mdls/AtzmusOyrAynSoyfs.gltf"
+	model: "atz2.gltf"
+//	model: "mdls/ok22.gltf"
+ })
+new Achdus.Domem({
+	scale: { 
+		x: 40,
+		y: 1,
+		z: 50
+	},
+	position: {
+		y: -5
+	},
+	color:"purple"
+})
+var shtarim = 0;
+var ind = 0
+var wow
+var mow
+var arz = []
+var mthindex = 0
+var mp3 = "mp3/worl.mp3"
+var i1, i2, ilid1, ilid2,
+	brow1,
+	brow2,
+	b1 = 0,
+	b2 = 0,
+	b3 = 0,
+	ix = 0, iy = 0,
+	facX = 0.03,
+	fac = 0.04,
+	facB = 0.01,
+	
+	endY = -0.75,
+	startY = 0,
+	endX = 0.16,
+	startX = -0.12,
+	
+	yy = endY + 0.1;
+
+var koyz = []
+window.addEventListener("keydown", function(e) {
+	koyz[e.keyCode] = true
+})
+
+window.addEventListener("keyup", function(e) {
+	koyz[e.keyCode] = false
+	peula(e.keyCode)
+})
+var curr = 0 
+var words = [
+	"The universe",
+	"The darkness",
+	"The soul",
+	"The soul's original level b4 it d sendid",
+	"The level the soul reaches after it's descent<br>" +
+	"which is higher than it's original source",
+]
+var colors = [
+	"orange",
+	"black",
+	"purple",
+	"gold",
+	"blue",
+	"brown"
+]
+
+function makeText(txt) {
+	var oo = new PowerUI.WorldUI(1770, 400)
+		
+	oo
+	.document
+	.innerHTML = "<body><div class=ok>" +
+	words[curr] + 
+	"</div>" +
+	"<style>" +
+	".ok{" + 
+	"text-extrude: 12;" +
+	"font-size: 75px;" + 
+	"color: " + txt +
+	"}"+
+	"</style></body>"
+	
+	oo.gameObject
+	.transform
+	.position =
+	choyss.gameObject.transform.position
+	
+	oo.gameObject.transform.rotation = 
+	choyss.gameObject.transform.rotation
+	return oo
+}
+/*var oyr = new Achdus.Ayin({
+	Init:function(a) {
+		a.nivraTriggers
+	},
+	FixedUpdate:function(a) {
+		a.gameObject.transform.position = 
+		choyss.gameObject.transform.position
+	}
+})*/
+new Achdus.Domem({
+	scale: {
+		x: 2, y: 2, z: 2
+	},
+	color:"orange",
+	Init:function(a) {
+	//	oyr.Yoytzayr(a)
+	}
+})
+Achdus.Tzirum.LoadTexture({
+	name: "fr",
+	url: "fre.png"
+})
+var foyr = new Achdus.Domem({
+	gameObject:"plane",
+	Init: function(a) {
+		var mat = new UnityEngine.Material(
+			UnityEngine.Shader.Find("Transparent/Diffuse")
+		)
+		mat.mainTexture = Achdus.Tzirum.GetTexture("fr")
+		a.renderer.material = mat
+		console.log(a._guf,2)
+	}
+})
+var af = new Achdus.Afar({
+	position:{
+		z:4
+	},
+	Init: function(a) {
+		var mat = new UnityEngine.Material(
+			UnityEngine.Shader.Find("Transparent/Diffuse")
+		)
+	//	var sh = a.AfarSystem
+		//
+		a.nivraTriggers
+		
+		/*a.MissHapaychHaguf({
+			foyr
+		})*/
+	},
+	FixedUpdate:function(a) {
+		a.MishanehTziur({
+			mareh:"orange"
+		})
+	}
+})
+
+function peula(k) {
+	console.log("wow",k)
+	if(k == 116) {
+		var sc = Math.random()
+		new Achdus.Domem({
+			model:"mdls/aretzs.gltf",
+			Init: function(a) {
+				a.position = choyss.gameObject.transform.position
+				a.position.y -= a.scale.y
+				a.isTrigger = true
+				a.dayuh.meen = "aretz"
+			},
+			scale: {
+				x: 0.4 + sc,
+				y: 0.4 + sc,
+				z: 0.4 + sc
+			},
+			Neefgash: {
+			//	//meen: "mesh",
+				//toldos: true
+			}
+		})
+	}
+	
+	if(k == 121) {
+		var oo = makeText(colors[curr++])
+		
+		var t = new Achdus.Domem({
+			gameObject:oo.gameObject,
+			scale: {
+				x:0 , y:0, z:0
+			},
+			Init: function(a){
+				a.nivraTriggers
+				a.dayuh.goi = 0
+				a.dayuh.scay = 0
+				a.dayuh.logd = false
+			},
+			FixedUpdate:function(a){
+				a.dayuh.scay += 0.01 / 50
+				if(a.dayuh.scay > 0.01)
+					a.dayuh.scay = 0.01
+				t.scale = {
+						x: a.dayuh.scay,
+						y: a.dayuh.scay,
+						z: a.dayuh.scay,
+					}
+				if(a.dayuh.scay < 0.01) {
+					
+				} else {
+					if(!a.dayuh.logd) {
+						a.dayuh.logd=true
+					}
+					//t.scale = .01
+				}
+			}
+		})
+	}
+	
+	if(k == 104) {
+		
+		var am = 0
+		var giv
+		var oyk = new Achdus.Ayin()
+		var y = new Achdus.Domem({
+			scale: {
+				x: 0,y:0,z:0
+			},
+			model: "mdls/toyrah.gltf",
+			Init: function(a) {
+				a.gameObject.transform.rotation = 
+				choyss.gameObject.transform.rotation
+				
+				a.gameObject.transform.Rotate(0,180, 0);
+				
+				a.gameObject.transform.position = 
+				choyss.gameObject.transform.position
+				
+				
+				a.nivraTriggers
+				giv = domemify(
+					a.gameObject,
+					"giveel"
+				)
+				if(giv) {
+					oyk.Yoytzayr(giv)
+					console.log("hi",oyk.targetTexture)
+				}
+				
+			/*	giv.renderer.material.color = 
+				new UnityEngine.Color(0.2,0.4,0.6)*/
+
+			},
+			FixedUpdate: function(a) {
+				oyk.gameObject.transform.position =
+				mc.gameObject.transform.position
+				if(am < 0.3) {
+					a.scale.x = am += 0.01
+					a.scale.y = am
+					a.scale.z = am
+				} else {
+					am = 1
+				}
+			}
+		})
+		console.log(y)
+	}
+}
+var isWalking = false
+Achdus.Tzirum.LoadTexture({
+	name: "er",
+	url: "oyrth.jpg"
+})
+
+//new Achdus.Aretz("eretz")
+var choyss = new Achdus.Chossid({
+	Init: function(a) {
+		a.gameObject.tag = "Player"
+		mow = domemify(
+			a.gameObject,
+			"Plane"
+		)
+		mow.isTrigger = true
+		a.PlayChayoos("oymayd")
+		for(var i = 0; i < 9; i++) {
+			var n = "well" + i
+			arz.push(n)
+			Achdus.Tzirum.LoadTexture(
+			{
+				name: n,
+				url:"mouth2/mouth0" + i + ".png"
+			})
+		}
+		
+		brow1 = domemify(
+			a.gameObject,
+			"Cube"
+		)
+		
+		brow2 = domemify(
+			a.gameObject,
+			"Cube.001"
+		)
+		
+		i1 = domemify(
+			a.gameObject,
+			"i1"
+		)
+		i2 = domemify(
+			a.gameObject,
+			"i1.001"
+		)
+		
+		ilid1 = domemify(
+			a.gameObject,
+			"ilid1"
+		)
+		ilid2 = domemify(
+			a.gameObject,
+			"ilid2"
+		)
+		
+		ilid1
+		.renderer
+		.material
+		.mainTexture
+		.wrapMode = 
+		
+		ilid2
+		.renderer
+		.material
+		.mainTexture
+		.wrapMode =
+		
+		UnityEngine
+		.TextureWrapMode
+		.Clamp;
+		
+		
+		mow.renderer.
+			material = new UnityEngine
+						.Material(
+							UnityEngine
+							.Shader
+							.Find(
+								"Transparent/Diffuse"
+							)
+						)
+	//	a.PlayChayoos("walk")
+
+	},
+	FixedUpdate: function(a) {
+		shtarim++;
+		if(shtarim > 100) shtarim = 0
+	
+		
+		
+		if(wow) {
+
+			var most = max(
+				wow.mirachefess
+			)
+			
+			
+			if(most < 0.01) ind = 8
+			else if(
+				(shtarim % 2) == 0
+			)
+				ind = (mthindex++) % 9
+			
+			
+			mow.renderer.
+			material.mainTexture = 
+			Achdus.Tzirum.GetTexture(arz[
+				ind
+			])
+		} else {
+		
+			if(mow) {
+			
+			ind = (mthindex++) % 9
+			mow
+			.renderer
+			.material
+			.mainTexture = 
+			Achdus.Tzirum.GetTexture(arz[
+				ind
+			])
+			}
+		}
+		
+		if(a.moveV != 0) {
+			if(!isWalking) {
+				isWalking = true
+				a.PlayChayoosFade("Action.003")
+			}
+		} else {
+			if(isWalking) {
+				a.PlayChayoosFade("oymayd")
+			}
+			isWalking = false
+		}
+		
+		b1 = b3 = b2 = 0;
+		
+		if(koyz[49]) {
+			if(ix < 0.16)ix += facX
+		}
+		if(koyz[51]) {
+			if(yy <= -0)
+			yy += fac
+		}
+		if(koyz[50]) {
+			if(ix >= -0.12)
+			ix -= facX
+		}
+		if(koyz[52]) {
+			if(yy >= endY) 
+			yy -= fac
+		}
+		
+		if(koyz[53]) {
+			b1 -= facB
+		//	brow1.position.y -= facB
+		}
+		
+		
+		
+		if(koyz[54]) {
+			b1 += facB
+			//brow1.position.y += facB
+		}
+		
+		if(koyz[55]) {
+			b2 -= facB * 2
+		}
+		
+		if(koyz[56]) {
+			b2 += facB * 2
+		}
+		
+		if(koyz[57]) {
+			b3 -= facB * 2
+		}
+		
+		if(koyz[48]) {
+			b3 += facB * 2
+		}
+		
+		brow1
+		.gameObject
+		.transform
+		.localPosition = new UnityEngine
+						.Vector3(
+							brow1
+							.gameObject
+							.transform
+							.localPosition
+							.x,
+							brow1
+							.gameObject
+							.transform
+							.localPosition
+							.y + b1,
+							brow1
+							.gameObject
+							.transform
+							.localPosition
+							.z
+						)
+		brow2
+		.gameObject
+		.transform
+		.localPosition = new UnityEngine
+						.Vector3(
+							brow2
+							.gameObject
+							.transform
+							.localPosition
+							.x,
+							brow2
+							.gameObject
+							.transform
+							.localPosition
+							.y + b1,
+							brow2
+							.gameObject
+							.transform
+							.localPosition
+							.z
+						)
+						
+		brow2
+		.gameObject
+		.transform
+		.localRotation
+		
+		= UnityEngine
+		.Quaternion
+		.Euler(
+			brow2
+			.gameObject
+			.transform
+			.localRotation
+			.eulerAngles
+			.x,
+			
+			brow2
+			.gameObject
+			.transform
+			.localRotation
+			.eulerAngles
+			.y,
+			
+			brow2
+			.gameObject
+			.transform
+			.localRotation
+			.eulerAngles
+			.z + b2 * 180 /	
+			Math.PI
+		)
+		
+		brow1
+		.gameObject
+		.transform
+		.localRotation
+		
+		= UnityEngine
+		.Quaternion
+		.Euler(
+			brow1
+			.gameObject
+			.transform
+			.localRotation
+			.eulerAngles
+			.x,
+			
+			brow1
+			.gameObject
+			.transform
+			.localRotation
+			.eulerAngles
+			.y,
+			
+			brow1
+			.gameObject
+			.transform
+			.localRotation
+			.eulerAngles
+			.z + b3 * 180 /	
+			Math.PI
+		)
+		
+						
+		//brow2.position.y = b1
+		
+	//	brow1.rotation.y = b2
+	//	brow2.rotation.y = b2
+		i1
+		.renderer
+		.material
+		.mainTextureOffset = 
+		new UnityEngine.Vector2(
+			ix, 0
+		)
+	
+	
+		i2
+		.renderer
+		.material
+		.mainTextureOffset = 
+		new UnityEngine.Vector2(
+			ix, 0
+		)
+		
+		ilid1
+		.renderer
+		.material
+		.mainTextureOffset = 
+		new UnityEngine.Vector2(
+			0, yy
+		)
+		
+		ilid2
+		.renderer
+		.material
+		.mainTextureOffset = 
+		new UnityEngine.Vector2(
+			0,yy
+		)
+	},
+	model: "mdls/ok22.gltf"
+	//model: "ok22.gltf"
+})
+
+k.onclick = function() {
+	kolify()
+}
+function kolify() {
+	Achdus.KolDodi.Kol(
+		mp3,
+		function(mm,e) {
+			
+			wow = mm
+			
+			mm.HeessCheelTzayad()
+		}
+	);
+}
+
+
+
+ new Achdus.Domem({
+	model: "mdls/aretz.gltf",
+	Neefgash: {
+		meen: "mesh",
+		toldos:true
+	},
+	Init:function(a) {
+		var p = domemify(
+			a.gameObject,
+			"Plane"
+		)
+		var t = Achdus.Tzirum.GetTexture(
+			"eretz"
+		)
+		var mat = new UnityEngine.Material(
+			UnityEngine
+			.Shader
+			.Find("Transparent/Diffuse")
+		)
+		mat.mainTexture = t
+		
+	/*	p
+		.renderer
+		.material
+
+		 =
+		mat*/
+		
+		p
+		.renderer
+		.material
+		.mainTexture
+		.wrapMode
+		 =
+		UnityEngine
+		.TextureWrapMode
+		.Repeat
+		
+		p
+		.renderer
+		.material
+		.mainTextureScale =
+		new UnityEngine.Vector2(
+			100,100
+		)
+		
+		console.log(p
+		.renderer
+		.material
+		.mainTexture
+		.wrapMode, "wrap?!")
+		console.log("hi",t)
+		
+		
+	}
+ })
+
+ 
+ 
+</script>

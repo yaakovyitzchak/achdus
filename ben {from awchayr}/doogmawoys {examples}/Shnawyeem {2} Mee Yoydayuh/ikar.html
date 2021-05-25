@@ -1,0 +1,545 @@
+B"H
+hi
+
+<button id=k>kol!?</button>
+<button id=ks>koyl story</button>
+<button >just clack</button>
+
+<div id="loyg">div</div>
+<script src="ayzer.js"></script>
+<script>
+
+Achdus.Cob.on("log", function(str) {
+	loyg.innerHTML = str +  "<br>" + loyg.innerHTML  
+	if(loyg.innerHTML.length > 2270)
+	loyg.innerHTML = ""
+})
+
+var arz = []
+var chawseedeem = {}
+var mawftaycheem = []
+var ws = new WebSocket("ws://localhost:771")
+var isTalking
+var fncs = {
+	someoneLeft: function(id) {
+	
+		var ido = mawftaycheem.indexOf(id)
+		if(ido > -1) {
+			var ch = chawseedeem[id]
+			if(ch) {
+				Achdus
+				.Yaakov
+				.SealaykNivra(ch.name);
+		//		console.log(mawftaycheem,chawseedeem)
+				mawftaycheem.splice(ido, 1)
+				delete chawseedeem[id]
+				
+		//		console.log(mawftaycheem,chawseedeem)
+			}
+		}
+		
+	},
+	wow: function(a) {
+		isTalking = a
+		//console.log(a, "O?!")
+	},
+	oyseeyoys: function(it) {
+		if(!it) it={}
+		var pz = it.position || it.makom
+		var txt = it.txt || it.text ||
+			it.oyseeyoys || it.letters
+		var oyd = it.id || it.ID
+		var oyt;
+	//	console.log("YOY",txt)
+		if(txt) {
+			if(!pz) {
+				if(oyd) {
+					var chos = chawseedeem[oyd]
+					if(chos) {
+						var tz = chos.choyss.gameObject.transform
+							.position
+						pz = [
+							tz.x,
+							tz.y,
+							tz.z
+						]
+						oyt = makeTxt(txt, pz,chos.choyss.gameObject.transform.rotation)
+						
+					} else {
+						oyt = makeTxt(txt+"", pz)
+					}
+				} else {
+					oyt = makeTxt(txt+"", pz)
+				}
+			} else {
+				oyt = makeTxt(txt+"", pz)
+			}
+			
+		}
+		if(oyt) {
+			var t = new Achdus.Domem({
+				gameObject:oyt.gameObject,
+				scale: {
+					x:0 , y:0, z:0
+				},
+				Init: function(a){
+					a.nivraTriggers
+					a.dayuh.goi = 0
+					a.dayuh.scay = 0
+					a.dayuh.logd = false
+				},
+				FixedUpdate:function(a){
+					
+					if(!a.dayuh.logd) {
+						a.dayuh.scay += 0.01 / 50
+						
+						if(a.dayuh.scay > 0.01) {
+							a.dayuh.scay = 0.01
+							
+							if(!a.dayuh.logd) {
+								a.dayuh.logd=true
+								
+							}
+						} else {
+							t.scale = {
+									x: a.dayuh.scay,
+									y: a.dayuh.scay,
+									z: a.dayuh.scay,
+								}
+						}
+					}
+				}
+			})
+		}
+	},
+	keydown: function(ib) {
+		var id = ib.id
+		var kc = ib.kc || ib.keyCode
+		
+		mawftaycheem.forEach(function(m) {
+			if(id == m)
+			if(chawseedeem[m]) {
+				chawseedeem[m].mawftayachDown(kc)
+			}
+		})
+	},
+	keyup: function(ib) {
+		var id = ib.id
+		var kc = ib.kc || ib.keyCode
+		mawftaycheem.forEach(function(m) {
+			if(id == m)
+			if(chawseedeem[m]) {
+				chawseedeem[m].mawftayachUp(kc)
+			}
+		})
+	},
+	nefeshChawdawsh: newSoyl
+}
+
+ws.onmessage = function(a) {
+	var yty
+	var h = JSON.parse(a.data)
+	for(yty in h) {
+		if((fncs[yty])) {
+			fncs[yty](h[yty])
+		}
+	}
+}
+
+
+
+
+ws.onopen = function(a) {
+	shlawch(ws, {
+		yo: 2
+	})
+}
+
+var choy = new ATZMUS.Chossid({
+	Init: function(a) {
+		a.PlayChayoos("stand")
+	},
+	model: "s/awduh2m.gltf"
+})
+var kawm
+try {
+	var mx = 0,
+		my = 0, mz = 0, ms = 0.2,
+		dir = 0, sp = 3
+	kawm = new ATZMUS.Domem({
+		HissHavoos: function(a) {
+			mx = my = mz = 0
+			/*113 = q
+			101=e
+			119=w
+			115=s
+			100=d
+			97=a
+			120 = x
+			122 = z
+			
+			*/
+			
+			if(ATZMUS.mawftaychoys[97]) {
+				dir -= sp
+			}
+			if(ATZMUS.mawftaychoys[100]) {
+				dir += sp
+			}
+			if(ATZMUS.mawftaychoys[120]) {
+				mz += ms
+			}
+			if(ATZMUS.mawftaychoys[122]) {
+				mz -= ms
+			}
+			if(ATZMUS.mawftaychoys[101]) {
+				mx += ms
+			}
+			if(ATZMUS.mawftaychoys[113]) {
+				mx -= ms
+			}
+			if(ATZMUS.mawftaychoys[118]) {
+				my += ms
+			}
+			if(ATZMUS.mawftaychoys[99]) {
+				my -= ms
+			}
+			
+			a.position.x += mx// * Math.sin(dir)
+			a.position.z += mz// * Math.cos(dir)
+			a.position.y += my
+		}
+	})
+	ATZMUS.ikarAyin.hawlawch(kawm)
+} catch(e) {
+//	console.log(e)
+}
+function newSoyl(ob) {
+	if(!ob) ob = {}
+	var gawv = ob.gawvawn || ob.color || [0.2,0.5,0.7]
+	var A = ob.shaym || ob.A || ob.ID
+	var makom = ob.makom || ob.position || {
+			x: -2
+		}
+	mawftaycheem.push(A);
+	
+	chawseedeem[A] = 
+	new ATZMUS.Awvdechuh({
+		onawake: function(a) {
+			/*if(mawfaycheem.length == 1) {
+				cm.pashut.gameObject.transform.SetParent(
+					a.gameObject.transform
+				)
+			//	ATZMUS.ikarAyin.hawlawch(cm)
+			}*/
+			
+			
+		},
+		setupKeys: {
+			87: "moveForward",
+			83: "moveBackward",
+			81: "moveSideLeft",
+			69: "moveSideRight",
+			68: "moveRight",
+			65: "moveLeft",
+			32: "jump",
+			
+			rebtdi: "rightEyebrowTurnDown",
+			rebtdo: "rightEyebrowTurnUp",
+			lebtdo: "leftEyebrowTurnUp",
+			lebtdi: "leftEyebrowTurnDown",
+			el: "eyeLeft",
+			er: "eyeRight",
+			eld: "eyelidDown",
+			elu: "eyelidUp",
+			ebd: "eyebrowDown",
+			ebu: "eyebrowUp",
+			it: "isTalking",
+			
+	//		49: "rightEyebrowTurnDown"
+		},
+		shaym: A,
+		peh: "Plane",
+		standing: "oymayd",
+		brow1: "Cube",
+		brow2: "Cube.001",
+		eye2: "i1.001",
+		eye1: "i1",
+		ilid1: "ilid1",
+		ilid2: "ilid2",
+		oyr: "Icosphere",
+		gawvawn: gawv,
+		goof: "mdls/ok22.gltf",
+		makom: makom,
+		onerror: function(s) {
+//			console.log("OY noy!")
+		}
+	})
+
+}
+
+
+function shlawch(n, m) {
+	var f = JSON.stringify(m)
+//	console.log(f)
+	n.send(f)
+}
+
+
+Achdus.Tzirum.LoadTexture({
+	name: "er",
+	url: "oyrth.jpg"
+})
+Achdus.Tzirum.LoadTexture({
+	name: "kk",
+	url: "txts/k.png"
+})
+
+var st = false
+var oyk
+ var mc = Achdus.Yaakov.mainCoby.shneeuh
+ var giv
+// console.log(mc)
+ 
+ new Achdus.Domem({
+	position: {
+		x: 10,
+		z:5
+	},
+	color:"orange",
+
+	model: "atz2.gltf"
+ })
+new Achdus.Domem({
+	scale: { 
+		x: 40,
+		y: 1,
+		z: 50
+	},
+	position: {
+		y: -5
+	},
+	color:"purple"
+})
+
+var koyz = []
+var isDown = false
+window.addEventListener("keydown", function(e) {
+	if(!koyz[e.keyCode]) {
+	//	console.log(e.keyCode)
+		koyz[e.keyCode] = true
+		peula(e.keyCode, 1)
+	/*	mawftaycheem.forEach(function(m) {
+			if(chawseedeem[m]) {
+				chawseedeem[m].mawftayachDown(e.keyCode)
+			}
+		})*/
+	}
+})
+
+window.addEventListener("keyup", function(e) {
+	koyz[e.keyCode] = false
+	/*mawftaycheem.forEach(function(m) {
+		if(chawseedeem[m]) {
+			chawseedeem[m].mawftayachUp(e.keyCode)
+		}
+	})*/
+	peula(e.keyCode, 0)
+})
+var curr = 0 
+var words = [
+
+
+]
+var colors = [
+
+	"black"
+]
+
+new Achdus.Domem({
+	model: "mdls/stayrs.gltf",
+	Neefgash: {
+		meen: "mesh",
+		toldos: true
+	},
+	scale: {
+		x: 2.123,
+		y: 2.4,
+		z: 2.3
+	},
+	position: {
+		x: 23
+	}
+})
+
+function makeText(txt, go) {
+	var oo = new PowerUI.WorldUI(7770, 400)
+		
+	oo
+	.document
+	.innerHTML = "<body><div class=ok>" +
+	txt + 
+	"</div>" +
+	"<style>" +
+	".ok{" + 
+	"text-align:center;" + 
+	"text-extrude: 12;" +
+	"font-size: 75px;" + 
+	"}"+
+	"</style></body>"
+	
+	oo.gameObject
+	.transform
+	.position =
+	go.gameObject.transform.position
+	
+	oo.gameObject.transform.rotation = 
+	go.gameObject.transform.rotation
+	return oo
+}
+Achdus.Tzirum.LoadTexture({
+	name: "ssd",
+	url: "prd.jpg"
+})
+new Achdus.Domem({
+	scale: {
+		x: 2, y: 2, z: 2
+	},
+	color:"orange",
+	Init:function(a) {
+		a.renderer.material = 
+		new UnityEngine.Material(
+			UnityEngine.Shader.Find("Transparent/Diffuse")
+		)
+		
+		a.renderer
+		.material.mainTexture = 
+		Achdus
+		.Tzirum
+		.GetTexture("ssd")
+	//	oyr.Yoytzayr(a)
+	}
+})
+Achdus.Tzirum.LoadTexture({
+	name: "fr",
+	url: "fre.png"
+})
+var foyr = new Achdus.Domem({
+	//gameObject:"sphere",
+	model:"mdls/mesht.gltf",
+	position: {
+		y: 4,
+		z: 5
+	}
+	,
+	Init: function(a) {
+		var mat = new UnityEngine.Material(
+			UnityEngine.Shader.Find("Transparent/Diffuse")
+		)
+		mat.mainTexture = Achdus.Tzirum.GetTexture("okk")
+		a.renderer.material = mat
+		//console.log(a._guf,2)
+	}
+})
+Achdus.Tzirum.LoadTexture({
+	name: "okk",
+	url: "txts/flaysm.png"
+})
+
+var mat = new UnityEngine.Material(
+	UnityEngine.Shader.Find("Transparent/Diffuse")
+)
+
+mat.mainTexture  = Achdus.Tzirum.GetTexture("okk")
+var ok = new Achdus.Domem({
+	gameObject:"sphere",
+	Init:function(a){ 
+		a.renderer.material = 
+		new UnityEngine.Material(
+			UnityEngine.Shader.Find("Transparent/Diffuse")
+		)
+		
+		a.renderer
+		.material.mainTexture = 
+		Achdus
+		.Tzirum
+		.GetTexture("er")
+//		= mat
+	},
+	position: {
+		x: 4,
+		y: 6,
+		z:2
+	},
+	scale: {
+		x:2,
+		y:2,
+		z:2
+	}
+})
+var koo = 0
+var deef = 600
+var shef = deef
+var ployd = false
+var did = false
+var spayd = false
+function peula(k, dw) {
+	if(kawm) {
+		
+	}
+	if(!dw) {
+		
+	}
+}
+
+
+function makeTxt(tx,pz,rt) {
+	var iu = new PowerUI.WorldUI(7770, 420)
+	iu.document.innerHTML = "<body><div class=ok>" +
+	tx + 
+	"</div>" +
+	"<style>body{color:blsck}" +
+	".ok{" + 
+	"text-align:center;" + 
+	"text-extrude: 12;" +
+	"font-size: 75px;color:black;" + 
+	"}"+
+	"</style></body>"
+	if(pz) {
+		if(!pz[0]) pz[0] = 0
+		if(!pz[1]) pz[1] = 0
+		if(!pz[2]) pz[2] = 0
+		iu.gameObject.transform
+		.position = new UnityEngine.Vector3(
+			pz[0],pz[1],pz[2]
+		)
+	}
+	if(rt) {
+	/*	if(!rt[0]) rt[0] = 0
+		if(!rt[1]) rt[1] = 0
+		if(!rt[2]) rt[2] = 0*/
+		iu.gameObject.transform
+		.rotation = rt
+	}
+	return iu
+}
+
+Achdus.Tzirum.LoadTexture({
+	name:"graoys",
+	url:"txts/dirt.jpg"
+})
+ new Achdus.Domem({
+	model: "mdls/aretz.gltf",
+	position: {
+		y: -5
+	},
+	Neefgash: {
+		meen: "mesh",
+		toldos:true
+	}
+	
+ })
+
+ 
+ 
+</script>

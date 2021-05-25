@@ -1,0 +1,78 @@
+
+		a.currentTime = 0
+		a.play();
+		a.onplay = function() {
+			var aa = a.captureStream()
+			var tr = aa.getAudioTracks()
+			console.log(aa,a,tr)
+		
+			
+			
+			/*
+			source = aCtx
+				.createMediaStreamSource(aa)
+
+			source.connect(lyzer);
+			lyzer.connect(aCtx.destination)
+			*/
+			
+		}					/*	var trp = chos.gameObject
+							.transform.position
+						pz = [
+							trp.x,
+							trp.y,
+							trp.z
+						]*//*	if(c == 32) {
+				atz.move("jump", 1)
+			}
+			*/
+			if(c == 81) {
+				atz.move("moveSideLeft", 1)
+			}
+			if(c == 69) {
+				atz.move("moveSideRight", 1)
+			}
+			
+			if(c == 68) {
+				atz.move("moveRight", 1)
+			}
+			
+			if(c == 65) {
+				atz.move("moveLeft", 1)
+			}
+			
+			if(c == 83) {
+				atz.move("moveBackward", 1)
+			}
+			
+			if(c == 87) {
+				atz.move("moveForward", 1)
+			}
+			onkeyup: function(c,atz) {
+		
+			
+			if(c == 83) {
+				atz.move("moveBackward", 0)
+			}
+			
+			if(c == 87) {
+				atz.move("moveForward", 0)
+			}
+			
+			
+			if(c == 81) {
+				atz.move("moveSideLeft", 0)
+			}
+			if(c == 69) {
+				atz.move("moveSideRight", 0)
+			}
+			
+			
+			if(c == 68) {
+				atz.move("moveRight", 0)
+			}
+			
+			if(c == 65) {
+				atz.move("moveLeft", 0)
+			}
+		},

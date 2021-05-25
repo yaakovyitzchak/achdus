@@ -1,0 +1,22 @@
+B"H
+<button id=b>ok</button>
+<br><video controls autoplay id=v></video>
+<script>
+var o = false
+b.onclick = () => {
+	if(!o) {
+		var o = document.createElement("input")
+		o.type="file"
+		o.click()
+		o.onchange = e => {
+			fetch(URL.createObjectURL(o.files[0]))
+			.then(b=>b.blob())
+			.then(b=>{
+				v.src = URL.createObjectURL(b)
+			})
+		}
+	} else {
+		o = false
+	}
+}
+</script>
