@@ -1,0 +1,30 @@
+
+	//	if(a.dayuh.standing) {
+			//	a.PlayChayoos("mihawlaych")
+		//		a.dayuh.standing = false
+	//		}
+	/*
+		
+		deebayr.innerHTML = a.dayuh.currentVert + "<br>" +a.dayuh.standing
+		if(a.dayuh.currentVert != 0) {
+			if(a.dayuh.standing) {
+				a.PlayChayoos("mihawlaych")
+				a.dayuh.standing = false
+			}
+		} else {
+			if(!a.dayuh.standing) {
+				a.PlayChayoos("stand")
+				a.dayuh.standing = true
+			}
+		}**/ 
+ 
+ B"H
+ drupal 7
+ civicrm
+ add content to webpage
+ add contact to crm
+ send email from crm
+ install three extensions civicrm
+ 6310 s vicente #200
+ 
+ 

@@ -1,0 +1,28 @@
+//B"H
+Object.defineProperties(
+	Array.prototype,
+	{
+		find: {
+			get: function(a) {
+				var that = this
+				return function(fnc) {
+					if(typeof(fnc) == "function") {
+						var i = 0;
+						for(
+							i = 0;
+							i < that.length; 
+							i ++
+						) {
+							if(
+								fnc(that[i], i, that)
+							) {
+								return that[i]
+							}
+						}
+						return null
+					}
+				}
+			}
+		}
+	}
+)

@@ -1,0 +1,128 @@
+Chossid: {
+		//Init: function(a) {
+			/*
+			
+			a.dayuh.skel = findDeepTransform(
+				a.gameObject.transform,
+				"atzmus"
+			)
+			
+			qqq = a
+			
+			a.dayuh.desiredRotation = 0
+			a.dayuh.actualRotation = 0
+			a.dayuh.royt = 0
+			a.dayuh.turned = false
+			a.dayuh.pose = "stand"
+			a.dayuh.needsRotation = false
+			a.dayuh.walkingSideways = false
+			a.dayuh.baseRotateUnit = 0;
+			a.dayuh.initialOffset = 0
+			a.dayuh.forwardOffset = 0
+			a.dayuh.isTransition = false
+			/*
+			try {
+				ws.send(sy({
+					welcome: {
+						id: "",
+						model: "goofeem/uhduhm.gltf",
+						position: a.position
+						//goof: 1
+					}
+				}))
+			} catch(e) {
+				gh.innerHTML = e.toString()
+			}
+			*/
+	//	},
+	//	FixedUpdate: function(a) {
+	/*
+			if(window.h) h.soychawkoys()
+		
+			a.dayuh.currentVert = Achdus.Input.GetAxis("Vertical")
+			a.dayuh.currentStr = Achdus.Input.GetAxis("Strife")
+			
+			
+			a.dayuh.pose = "stand"
+			a.dayuh.walkingForward = false
+			a.dayuh.walkingBackwards = false
+			a.dayuh.walkingSideways = false
+			
+			if(a.dayuh.currentVert != 0) {
+				a.dayuh.pose = "walk"
+				if(a.dayuh.currentVert  > 0)
+					a.dayuh.walkingForward = true
+				else
+					a.dayuh.walkingBackwards = true
+			}
+			
+			if(a.dayuh.currentStr != 0) {
+				a.dayuh.pose = "walk"
+				a.dayuh.walkingSideways = true
+				
+			}
+			
+			
+			
+			
+			if(a.dayuh.walkingSideways) {
+				if(!a.dayuh.turned) {
+
+					a.dayuh.turned = true
+				
+				}
+				a.dayuh.desiredRotation = (90) * a.dayuh.currentStr
+				if(a.dayuh.walkingForward) {
+					a.dayuh.desiredRotation -= 45 * a.dayuh.currentStr
+				}
+				if(a.dayuh.walkingBackwards ) {
+					a.dayuh.desiredRotation += 45 * a.dayuh.currentStr
+				}
+				
+			} else {
+				if(a.dayuh.turned) {
+					a.dayuh.turned = false
+				//	a.dayuh.desiredRotation = 0
+				//	a.dayuh.needsRotation = true
+					
+				}
+				if(a.dayuh.walkingBackwards ) {
+					a.dayuh.desiredRotation = 180
+				} else if(a.dayuh.walkingForward) {
+					a.dayuh.desiredRotation = 0
+				}
+			}
+			
+			
+			
+			
+			
+			if(
+				(a.dayuh.desiredRotation) != 
+				(a.dayuh.actualRotation)
+			) {
+				a.dayuh.actualRotation = (a.dayuh.desiredRotation)
+				a.dayuh.needsRotation = true
+			}
+			
+			if(a.dayuh.needsRotation) {
+				if(a.dayuh.skel) {
+					a.dayuh.skel
+					.eulerAngles = new UnityEngine.Vector3(
+						a.dayuh.skel.eulerAngles.x,
+						Math.floor(a.direction + a.dayuh.actualRotation),
+						a.dayuh.skel.eulerAngles.z
+					)
+				}
+				a.dayuh.needsRotation = false
+			}
+			
+			if(a.dayuh.pose == "walk") {
+				a.PlayChayoosFade("mihawlaych")
+			}
+			
+			if(a.dayuh.pose == "stand") {
+				a.PlayChayoosFade("stand")
+			}*/
+	//	}
+	}

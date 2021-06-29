@@ -1,0 +1,11 @@
+B"H
+<button id="bb">ok</button><br>
+<video id="b" autoplay></video>
+<script>
+bb.onclick = function() {
+	navigator.mediaDevices.getUserMedia({video:true,audio:true})
+	.then(s => {
+		b.srcObject = s
+	})
+}
+</script>

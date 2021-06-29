@@ -1,0 +1,52 @@
+B"H
+<meta charset="utf-8">
+<div id="gh"></div>
+<style>
+body {
+	background:blue
+}
+</style>
+<button id="aw">asd</button>
+<script src="../reshes/ayzer.js"></script>
+<script>
+ATZMUS.ikarAyin.position.x = 1
+var d = 1
+var y = new ATZMUS.Domem({
+	position: {
+		//x:2,
+		y: 2
+	},
+	mihawlach:true,
+	gavan: "red",
+	HissHavoos: function(a) {
+	//	a.position.x += d / 10
+	//	ATZMUS.ikarAyin.position.x += d / 10
+		if(
+			Math.abs(a.position.x)> 4
+		//	Math.abs(ATZMUS.ikarAyin.position.x) > 4
+		)
+			d *= -1
+	//	a.rotation.x += 1
+	},
+	Init: function(a) {
+		
+	}
+})
+var t = new ATZMUS.Domem({
+	color: "orange",
+	/*scale: {
+		x: 6,
+		z: 6,y:0.2
+	},*/
+	rotation: {
+	//	x: -37
+	},
+	HissHavoos: function(a) {
+		
+	},
+	position: {
+	
+		y: -1
+	}
+})
+</script>

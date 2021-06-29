@@ -1,0 +1,760 @@
+B"H<br>
+<meta charset="utf-8">
+<div id="loading" class="hd">
+	<div id="loadingTxt">Loading map!?</div><br>
+	<div id="progressBar" class="progressBar blue"></div>
+	<div id="progressBarMain" class="progressBar orange"></div>
+</div>
+<Div id="ingame">
+	<div id="gh"></div>
+	<button id="asw">moyk</button>
+	<button id="aw">asd</button>
+	<button id="bkh">Menu?!</button>
+	<button id="fff">f</button>
+	<button id="w1a">Say Shmah To Attack!</button>
+	<button id="w2a">down</button>
+	<button id="w3a">cam</button>
+	<button id="w4a">cam2</button>
+	<button id="ad">Add</button>
+	<button id="itt">isTalking</button>
+	<div id="deebayr"></div>
+	<div id="dial"></div>
+</div>
+<div id="start">
+<button id="load">Play?!</button>
+</div>
+<div id="mapPage" class="hd">
+	<button id="homeM">Back to home?!</button>
+	<div id="maps">
+	lll
+	lll
+	</div>
+</div>
+<script src="ayzer.js"></script>
+<script>
+var isTalk = false
+itt.onclick = function() {
+	isTalk = !isTalk
+	h.partzoof["isTalking"] = isTalk
+	
+}
+
+var mainKoyl
+var playd = false
+asw.onclick = function() {
+//3233976503
+/*
+	var kold = Achdus.KolDodi.BorayKolMakor(new UnityEngine.GameObject());
+	var klip = Achdus.KolDodi.BorayKolClip(
+		Microphone
+		.Start("", true,32, 44100)
+	);
+	kold.clip = klip;
+	kold.Play()*/
+	gh.innerHTML += "trying"
+	Achdus.KolDodi.Koylel("",500, function(k) {
+		mainKoyl = k
+		
+
+		//
+		gh.innerHTML += "MIC?!!?"+mainKoyl
+	})
+}
+var startR = [
+	new Achdus.Domem({
+		model: "goofeem/livayna.gltf",
+		position: {
+			x:4,
+			y: -4,z:0
+		},
+		
+		Neefgash: {
+			toldos:true,type:"mesh"
+		}
+	}),
+	new Achdus.Chossid({
+		name: "choyss",
+		model: "goofeem/uhduhm.gltf",
+		position: {
+			x:4,
+			y: 5,z:0
+		},
+		Init:function(a) {
+			a.gameObject
+			.tag = "Player";
+		}
+	})
+]
+Achdus.Yetzirah.AyeenReshes(true)
+var ko = 0
+var fncs = {
+	Chossid: {
+		Init: function(a) {
+			
+			
+			a.dayuh.skel = findDeepTransform(
+				a.gameObject.transform,
+				"atzmus"
+			)
+			
+			qqq = a
+			
+			a.dayuh.desiredRotation = 0
+			a.dayuh.actualRotation = 0
+			a.dayuh.royt = 0
+			a.dayuh.turned = false
+			a.dayuh.pose = "stand"
+			a.dayuh.needsRotation = false
+			a.dayuh.walkingSideways = false
+			a.dayuh.baseRotateUnit = 0;
+			a.dayuh.initialOffset = 0
+			a.dayuh.forwardOffset = 0
+			a.dayuh.isTransition = false
+			
+			
+			
+		},
+		FixedUpdate: function(a) {
+			if(a.chayoos) {
+				if(a.chayoos["mihawlaych"])
+					a.chayoos["mihawlaych"].speed = 2
+			}
+			
+			ko++
+			if(ko > 200) ko=0
+			if(window.h) {
+				if(mainKoyl) {
+					if(!playd) {
+					
+						if(Achdus.KolDodi.MicMakom("") > 0) {
+							playd = true
+							mainKoyl.Play()
+							mainKoyl.Mutify()
+						}
+					}
+					mainKoyl.Tzayid(0)
+					var most = max(
+						mainKoyl.mirachefess
+					)
+					
+					
+					if(most > 0.03)
+						h.partzoof["isTalking"] = 1
+					else
+						h.partzoof["isTalking"] = 0
+				}
+				h.soychawkoys()
+				
+			}
+		
+			
+			a.dayuh.currentVert = Achdus.Input.GetAxis("Vertical")
+			a.dayuh.currentStr = Achdus.Input.GetAxis("Strife")
+			
+			
+			a.dayuh.pose = "stand"
+			a.dayuh.walkingForward = false
+			a.dayuh.walkingBackwards = false
+			a.dayuh.walkingSideways = false
+			
+			if(a.dayuh.currentVert != 0) {
+				a.dayuh.pose = "walk"
+				if(a.dayuh.currentVert  > 0)
+					a.dayuh.walkingForward = true
+				else
+					a.dayuh.walkingBackwards = true
+			}
+			
+			if(a.dayuh.currentStr != 0) {
+				a.dayuh.pose = "walk"
+				a.dayuh.walkingSideways = true
+				
+			}
+			
+			
+			
+			
+			if(a.dayuh.walkingSideways) {
+				if(!a.dayuh.turned) {
+
+					a.dayuh.turned = true
+				
+				}
+				a.dayuh.desiredRotation = (90) * a.dayuh.currentStr
+				if(a.dayuh.walkingForward) {
+					a.dayuh.desiredRotation -= 45 * a.dayuh.currentStr
+				}
+				if(a.dayuh.walkingBackwards ) {
+					a.dayuh.desiredRotation += 45 * a.dayuh.currentStr
+				}
+				
+			} else {
+				if(a.dayuh.turned) {
+					a.dayuh.turned = false
+				//	a.dayuh.desiredRotation = 0
+				//	a.dayuh.needsRotation = true
+					
+				}
+				if(a.dayuh.walkingBackwards ) {
+					a.dayuh.desiredRotation = 180
+				} else if(a.dayuh.walkingForward) {
+					a.dayuh.desiredRotation = 0
+				}
+			}
+			
+			
+			
+			
+			
+			if(
+				(a.dayuh.desiredRotation) != 
+				(a.dayuh.actualRotation)
+			) {
+				a.dayuh.actualRotation = (a.dayuh.desiredRotation)
+				a.dayuh.needsRotation = true
+			}
+			
+			if(a.dayuh.needsRotation) {
+				if(a.dayuh.skel) {
+					a.dayuh.skel
+					.eulerAngles = new UnityEngine.Vector3(
+						a.dayuh.skel.eulerAngles.x,
+						Math.floor(a.direction + a.dayuh.actualRotation),
+						a.dayuh.skel.eulerAngles.z
+					)
+				}
+				a.dayuh.needsRotation = false
+			}
+			
+			if(a.dayuh.pose == "walk") {
+				a.PlayChayoosFade("mihawlaych")
+			}
+			
+			if(a.dayuh.pose == "stand") {
+				a.PlayChayoosFade("stand")
+			}
+		}
+	}
+}
+
+var server = "http://localhost:8011";
+var modelPth = "goofeem/";
+
+load.onclick = function() {
+	new Achdus.Giluy(
+		server + "/?t=maps",
+		function(r,e) {
+			var p = pr(r)
+			hide(start)
+			show(mapPage)
+			if(p && p.length > 0) {
+				
+				maps.innerHTML = ""
+				p.forEach(function(k) {
+					var b = document.createElement("button")
+					b.innerHTML = k.id +": " +k.name
+					b.onclick = function() {
+						playMap(k)
+					}
+					maps.appendChild(b)
+				})
+			} else {
+				maps.innerHTML = "No maps?!"
+			}
+			
+		}
+	)
+}
+
+
+
+homeM.onclick = function() {
+	hide(mapPage)
+	show(start)
+}
+
+bkh.onclick = function() {
+	obs.forEach(function(a) {
+		a.Sealayk();
+	})
+	
+	curMapItems = []
+	obs = []
+	hide(ingame)
+	show(start)
+}
+
+ad.onclick = function() {
+	
+}
+
+var obs = []
+var tzurah = []
+
+var goofeem = []
+
+var types = {
+	0: "Domem",
+	5: "Chossid"
+}
+
+
+var curMapItems = []
+
+aw.onclick = function() {
+	try {
+		h = new ATZMUS.Pawneemeeyoos(qqq, {
+			peh: "mouth",
+			stand:"stand",
+			eye1:"ilid2.002",
+			eye2:"ilid2.003",
+			brow1:"Cube.030",
+			brow2:"Cube.029",
+			eyelid1:"i1.002",
+			eyelid2:"i1.001",
+			mayftaychos: {
+				49: "eyelidUp",
+				50: "eyelidDown"
+				
+			},
+			error: function(e) {
+				console.log("A?!@",e)
+			}
+		})
+		gh.innerHTML = JSON.stringify(h.partzoof)
+	} catch(e) {
+		gh.innerHTML = JSON.stringify(e)
+	}
+}
+
+w1a.addEventListener("keyup", function(e) {
+	gh.innerHTML = "io[ " + e.keyCode
+	/*
+	if(e.keyCode ==  49) {
+		if(window.h) {
+			gh.innerHTML = JSON.stringify(h.partzoof)
+		//	h.peooluh(e.keyCode, 0)
+			h.face("eyelidUp", 0)
+		}
+	} else if(e.keyCode ==  50) {
+		if(window.h) {
+		//	h.peooluh(e.keyCode, 0)
+			h.face("eyelidDown", 0)
+		}
+	}
+	*/
+})
+
+w4a.onmousedown= function(e) {
+
+	Achdus.Yaakov.mainCoby.cameraComponent.targetHeight -= 0.2
+}
+
+w3a.onmousedown = function(e) {
+	Achdus.Yaakov.mainCoby.cameraComponent.targetHeight += 0.2
+}
+
+w2a.onmouseup= function(e) {
+
+	h.face("eyelidDown", 0)
+}
+w2a.onmousedown = function(e) {
+	h.face("eyelidDown", 1)
+}
+w1a.onmouseup = function(e) {
+	h.face("eyelidUp", 0)
+}
+w1a.onmousedown = function(e) {
+
+//	if(window.h) h.peooluh(e.keyCode, 1)
+		h.face("eyelidUp", 1)
+	/*if(e.keyCode ==  49) {
+		if(window.h) {
+		//	h.peooluh(e.keyCode, 0)
+			h.face("eyelidUp", 1)
+			gh.innerHTML = "DOWN " + JSON.stringify(h.partzoof)
+		}
+	} else if(e.keyCode ==  50) {
+		if(window.h) {
+		//	h.peooluh(e.keyCode, 0)
+			h.face("eyelidDown", 1)
+		}
+	}*/
+}
+
+var otherChoyseedim = [
+	
+]
+//Achdus.Yetzirah.AyeenReshes1st()
+
+var ws = new WebSocket("ws://localhost:771")
+var myID;
+ws.onopen = function() {
+	gh.innerHTML = "Yay got new one!"
+	
+}
+
+ws.onmessage = function(e) {
+/*	var m = trp(e.data)
+	for(var k in m) {
+		if(lstn[k]) {
+			lstn[k](m[k])
+		}
+	}*/
+}
+var lstn = {
+	uid: function(i) {
+		myID = i
+		gh.innerHTML += "got new ID!"+i
+		
+	},
+	newPlayer: function(dta) {
+		gh.innerHTML += "new Ployir!"+sy(dta)
+	
+		if(dta.id && dta.id != myID) {
+			gh.innerHTML += "even moyr?!"
+			var fnc = fncs["Chossid"]
+			
+			otherChoyseedim.push(
+				new Achdus.Chai({
+					position:dta.position,
+					model: "goofeem/uhduhm.gltf",
+					Init: function(a) {
+						a.ruhtzon = false
+						a.nivraTriggers
+					},
+					Init: function(a) {
+						a.ruhtzon = false
+					},
+					FixedUpdate:function(a) {
+						
+					}
+				})
+			)
+		}
+	},
+	otherThings: function(a) {
+		gh.innerHTML += "other?!" + sy(a)
+	}
+}
+
+function sy(ob) {
+	return JSON.stringify(ob)
+}
+
+function trp(str) {
+	try {
+		return JSON.parse(str)
+	} catch(e) {
+		return {}
+	}
+}
+
+
+
+function make(ty, op, oyth) {
+	if(!op) op = {}
+	if(!ty) ty = "Domem"
+	
+	var fnc = fncs[ty]
+	if(fnc) {
+		ob.FixedUpdate = fnc.FixedUpdate
+	}
+	
+	var oldIn = ob.Init
+	ob.Init = function(a) {
+		if(fnc) {
+			if(fnc.Init)
+				fnc.Init(a)
+		}
+		if(typeof(oldIn) == "function")
+			oldIn(a)
+	}
+	if(typeof(oyth) == "string")
+		ty = oyth
+	return new Achdus[ty](ob)
+}
+
+
+function playMap(k) {
+	hide(mapPage)
+	show(loading)
+	if(window.startR) {
+		startR.forEach(function(r) {
+			Achdus
+			.Yaakov
+			.SealaykNivra(r.name)
+		})
+	}
+	new Achdus.Giluy(
+		server + "/?t=items&q=map="+k.id,
+		function(r,e) {
+			loadingTxt.innerHTML = "Loading map " + k.name
+			var p = pr(r)
+			if(p) {
+				
+				var id = 0
+				function go() {
+					progressBar.innerHTML = id + "/" +p.length
+					progressBar.style.width = 
+					(id / p.length * 500) + "px"
+					if(id < p.length) {
+						var c = p[id]
+						if(c) {
+							curMapItems.push(c)
+							var inf = tzurah.find(function(x) {
+								return x.id == c.id
+							})
+							if(!inf) {
+								new Achdus.Giluy(
+									server + "/?t=tzurah&q=id="
+									+c.id,
+									function(r,e) {
+										var rr = pr(r)
+										if(rr && rr.length > 0) {
+											tzurah.push(rr[0])
+											
+											loadingTxt.innerHTML = 
+											"Loaded tzurah of item "
+											+rr[0].name
+											
+											var guf = rr[0].guf
+				var isGoof = goofeem.find(function(g) {
+					return g.id == guf
+				})
+				if(!isGoof) {						
+					new Achdus.Giluy(
+						server + "/?t=goofeem&q=id="
+						+guf,
+						function(r) {
+							var arr = pr(r)
+							if(arr && arr.length > 0) {
+								goofeem.push(arr[0])
+								
+								loadingTxt.innerHTML = 
+								"Loaded goof info of item "
+								+rr[0].name+", which is "+
+								arr[0].model
+								
+								id++;
+								go()
+							} else {
+								loadingTxt.innerHTML = 
+								"Problem loading goof of item "
+								+rr[0].name
+							} 
+						}
+					
+					)
+				} else {
+					id++;
+					go()
+				}
+										} else {
+											loadingTxt.innerHTML = 
+											"Problem loading "+r
+										}
+										
+									}
+								);
+							} else {
+								id++;
+								go()
+							}
+						} else {
+							loadingTxt.innerHTML = 
+							"Problem loading things?"
+						}
+						
+					} else {
+						loadingTxt.innerHTML = 
+						"Loaded data for items of map " + 
+						k.name
+						
+				//		loadingTxt.innerHTML = 
+					//	JSON.stringify(goofeem) + "<br>"+
+				//		JSON.stringify(tzurah) + "<br>"+
+					//	JSON.stringify(curMapItems) + "<br>"
+						
+						var mid = 0
+						makeIt()
+						function makeIt() {
+							if(mid < curMapItems.length) {
+							//	loadingTxt.innerHTML = "Making item "+
+							//	mid + " out of " + curMapItems.length
+								var cr = curMapItems[mid]
+								var tzoor = tzurah.find(function(tz) {
+									return tz.id == cr.id
+								})
+								loadingTxt.innerHTML += "K!OK"+JSON.stringify(tzoor)
+								if(tzoor) {
+									var ty = types[tzoor.type]
+									var goof = goofeem[tzoor.guf]
+									if(ty) {
+										var ob = {
+											position:{
+												x: cr.x,
+												y:cr.y,
+												z:cr.z
+											}
+										}
+										loadingTxt.innerHTML += "GoT?!"+ty+JSON.stringify(goof)
+										if(goof) {
+											ob.model = modelPth 
+												+ goof.model; 
+											if(goof.type == 1) {
+												ob.Neefgash = {
+													toldos:true,
+													type:"mesh"
+												}
+											}
+										} else {
+											loadingTxt.innerHTML = 
+											"Couldnt load modle?"
+										}
+										loadingTxt.innerHTML += "<br>?@ADW"+ty+JSON.stringify("OK?!")+ty+
+										"<br>>!?!"+(fncs)
+										var fnc = fncs[ty]
+										loadingTxt.innerHTML += "<br>afwr2f2!!!!"
+										if(fnc) {
+											ob.FixedUpdate = fnc.FixedUpdate
+										}
+										
+										ob.Init = function(a) {
+											
+											if(fnc) {
+												if(fnc.Init)
+													fnc.Init(a)
+											}
+											mid++
+											makeIt()
+											
+											if(ty == "Chossid") 
+											{
+												a.gameObject.tag = "Player"
+											//	
+												var op = sy({
+														welcome: {
+															id: myID,
+															model: "goofeem/uhduhm.gltf",
+															position: getPos(a)
+															//goof: 1
+														}
+													})
+												gh.innerHTML += "sending " + op
+												try {
+													ws.send(op)
+												} catch(e) {
+													gh.innerHTML += e.toString()
+												}
+											}
+											
+										}
+										
+										loadingTxt.innerHTML += "OK doing it?!"
+										if(cr.x) ob.position.x = cr.x
+										if(cr.y) ob.position.y = cr.y
+										if(cr.z) ob.position.z = cr.z;
+											
+										obs.push(
+											new Achdus[ty](ob)
+								//			make(ty,op)
+										);
+										
+									} else {
+										loadingTxt.innerHTML = 
+										"Couldn't find type for "+
+										tzoor.name
+									}
+								} else {
+									loadingTxt.innerHTML = 
+									"Couldn't find tziur for "+
+									cr.id
+								}
+							} else {
+								
+								hide(loading)
+								show(ingame)
+							}
+						}
+						
+					}
+				}
+				go();
+			} else {
+				loadingTxt.innerHTML = "Dude nothing was found for that map!?"
+			}
+		}
+	)
+}
+
+function getPos(a) {
+	//if(a.gameObject)
+	return ({
+		x: a.gameObject.transform.position.x,
+		y: a.gameObject.transform.position.y,
+		z: a.gameObject.transform.position.z
+	}) 
+	// return ({x:0,y:0,z:0})
+}
+
+function pr(str) {
+	try {
+		return JSON.parse(str);
+	} catch(e){
+		return null
+	}
+}
+
+function show(el) {
+	if(el) {
+		el.style.display = ""
+	}
+}
+function hide(el) {
+	if(el) {
+		el.style.display = "none"
+	}
+}
+</script>
+<style>
+.hd {
+	display:none
+}
+#ingame{
+	display:none
+}
+
+.blue {
+	background:blue:
+}
+
+.orange {
+	background:orange:
+}
+
+.progressBar {
+	padding:32px;
+	text-align:center;
+	display:block;
+	width:2px;
+	
+}
+
+#dial {
+	#position:absolute;
+	display:inline-block;
+	border:3px solid black;
+	background: tan;
+	display:none;
+	//width:300px;
+	#height:200px;
+	bottom:15px;
+	left:40px;
+	text-align:center;
+	padding:4px;
+	color:black;
+	font-family:Helvetica;
+	font-weight:bold
+}
+</style>

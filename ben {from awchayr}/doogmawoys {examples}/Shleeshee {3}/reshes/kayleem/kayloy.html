@@ -1,0 +1,45 @@
+B"H
+<input type="file" id=d><br>
+<input id="nay" placeholder="shaym"><br>
+<input id="mym" placeholder="mime"><br>
+<button id="s" disabled=true>Mawtzeel</button>
+<a id="k"></a>
+<script>
+var t = new FileReader()
+
+s.onclick = function() {
+	k.download = (nay.value || Date.now()) + ".js"
+	k.href = URL.createObjectURL(
+		new Blob(
+			[
+				"/*B\"H\*/\nYICHOYLISS.BH(\n\t\"" + 
+		//		"shaym: " + k.download + 
+				/*",\n\tmeen: "  + (mym.value ||
+				"application/octet-stream") + */
+				//",\n\tetzem: " + 
+				t.result +
+				"\"\n);"
+			],
+			{
+				type: "application/javascript"
+			}
+		)
+	)
+	
+	k.click()
+}
+
+d.onchange = function() {
+	t.readAsDataURL(d.files[0])
+	t.onload = () => {
+		s.disabled = false
+	}
+	/*fetch(
+		URL.createObjectURL(d.files[0])
+	)
+	.then(r => r.blob())
+	.then(r => {
+		y=r
+	})*/
+}
+</script>

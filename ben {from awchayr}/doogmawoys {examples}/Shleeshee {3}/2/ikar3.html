@@ -1,0 +1,347 @@
+B"H
+<Div id="ingame">
+<div id="gh"></div>
+<button id="aw">asd</button>
+<button id="fff">f</button>
+<button id="w1a">Say Shmah To Attack!</button>
+<div id="deebayr"></div>
+<div id="dial"></div>
+<div>
+<div id="start">
+</div>
+<div id="maps">
+
+</div>
+<style>
+#dial {
+	#position:absolute;
+	display:inline-block;
+	border:3px solid black;
+	background: tan;
+	display:none;
+	//width:300px;
+	#height:200px;
+	bottom:15px;
+	left:40px;
+	text-align:center;
+	padding:4px;
+	color:black;
+	font-family:Helvetica;
+	font-weight:bold
+}
+</style>
+<script src="ayzer.js"></script>
+<script>
+fff.onclick = function() {
+	UnityEngine.Screen.fullScreen = !UnityEngine.Screen.fullScreen
+}
+Achdus.Cob.on("log", function(s) {
+	gh.innerHTML = s + "<br>" + gh.innerHTML
+})
+aw.onclick = function() {
+	h = new ATZMUS.Pawneemeeyoos(qqq, {
+			peh: "mouth",
+			stand:"stand",
+			eye1:"ilid2.002",
+			eye2:"ilid2.003",
+			brow1:"Cube.030",
+			brow2:"Cube.029",
+			eyelid1:"i1.002",
+			eyelid2:"i1.001",
+			error: function(e) {
+				console.log("A?!@",e)
+			}
+		})
+}
+
+
+var tt = new Achdus.Domem({
+	Neefgash: {
+		meen: "mesh"
+		,toldos:true
+	},
+	position:{
+		y: -3
+	},
+	model:"goofeem/floor.gltf"
+})
+
+
+w1a.onclick = function() {
+	
+}
+
+UnityEngine.RenderSettings.fog = true
+UnityEngine.RenderSettings.fogMode = UnityEngine.FogMode.Linear
+UnityEngine.RenderSettings.fogColor = new UnityEngine.Color(0.2,0.2,0.2)
+//UnityEngine.RenderSettings.fogMode = UnityEngine.FogMode.ExponentialSquared
+//UnityEngine.RenderSettings.fogMode = UnityEngine.FogMode.Exponential
+UnityEngine.RenderSettings.fogStartDistance = 70
+UnityEngine.RenderSettings.fogEndDistance = 100
+UnityEngine.RenderSettings.fogDensity = .05
+UnityEngine.Camera.main.farClipPlane = 
+Achdus.Yaakov.mainCoby.shneeuh.farClipPlan = 100
+
+/*
+
+*/
+
+var h;
+var skel;
+//Achdus.Yetzirah.AyeenReshes(1920,1080)
+var o = new Achdus.Chossid({
+	model: "goofeem/awduh2m.gltf",
+	name:"yoy",
+	Init: function(s) {
+		s.gameObject.tag = "Player"
+		qqq = s
+		skel = findDeepTransform(
+			s.gameObject.transform,
+			"Armature.001"
+		)
+		s.dayuh.skel = skel
+		if(skel) {
+			console.log("!?!",skel)
+			/*skel.rotation = {
+				x:32,y:2,z:2
+			}*/
+		}
+		s.dayuh.desiredRotation = 0
+		s.dayuh.actualRotation = 0
+		s.dayuh.royt = 0
+		s.dayuh.turned = false
+		s.dayuh.pose = "stand"
+		s.dayuh.needsRotation = false
+		s.dayuh.walkingSideways = false
+		s.dayuh.baseRotateUnit = 0;
+		s.dayuh.initialOffset = 0
+		s.dayuh.forwardOffset = 0
+		s.dayuh.isTransition = false
+	},
+	FixedUpdate:function(a) {
+	//	if(h) h.soychawkoys()
+	
+		a.dayuh.currentVert = Achdus.Input.GetAxis("Vertical")
+		a.dayuh.currentStr = Achdus.Input.GetAxis("Strife")
+		
+		
+		a.dayuh.pose = "stand"
+		a.dayuh.walkingForward = false
+		a.dayuh.walkingSideways = false
+		
+		if(a.dayuh.currentVert != 0) {
+			a.dayuh.pose = "walk"
+			a.dayuh.walkingForward = true
+		}
+		
+		if(a.dayuh.currentStr != 0) {
+			a.dayuh.pose = "walk"
+			a.dayuh.walkingSideways = true
+			
+		}
+		
+		
+		
+		
+		if(a.dayuh.walkingSideways) {
+			if(!a.dayuh.turned) {
+
+				a.dayuh.turned = true
+			
+			}
+			a.dayuh.desiredRotation = (90) * a.dayuh.currentStr
+			if(a.dayuh.walkingForward) {
+				a.dayuh.desiredRotation -= 45 * a.dayuh.currentStr
+			}
+			
+		} else {
+			if(a.dayuh.turned) {
+				a.dayuh.turned = false
+				a.dayuh.desiredRotation = 0
+				a.dayuh.needsRotation = true
+			}
+		}
+		
+		
+		
+		
+		
+		if(
+			(a.dayuh.desiredRotation) != 
+			(a.dayuh.actualRotation)
+		) {
+			a.dayuh.actualRotation = (a.dayuh.desiredRotation)
+			a.dayuh.needsRotation = true
+		}
+		
+		if(a.dayuh.needsRotation) {
+			if(a.dayuh.skel) {
+				a.dayuh.skel
+				.eulerAngles = new UnityEngine.Vector3(
+					a.dayuh.skel.eulerAngles.x,
+					Math.floor(a.direction + a.dayuh.actualRotation),
+					a.dayuh.skel.eulerAngles.z
+				)
+			}
+			a.dayuh.needsRotation = false
+		}
+	
+	/*
+		if(
+			Math.floor(a.dayuh.desiredRotation) != 
+			Math.floor(a.dayuh.actualRotation)
+		) {
+			if(a.dayuh.baseRotateUnit == 0) {
+				a.dayuh.baseRotateUnit = Math.abs(
+					a.dayuh.actualRotation - 
+					a.dayuh.desiredRotation
+				) / 50
+			}
+			a.dayuh.isTransition = true
+			a.dayuh.actualRotation = Math.floor(a.dayuh.desiredRotation)
+			if(skel) {
+				skel
+				.eulerAngles = new UnityEngine.Vector3(
+					skel.eulerAngles.x,
+					Math.floor(a.dayuh.initialOffset + a.dayuh.actualRotation),
+					skel.eulerAngles.z
+				)
+			}
+		} else {
+			a.dayuh.baseRotateUnit = 0
+			a.dayuh.isTransition = false
+		}
+		a.dayuh.isTransition=false
+		if(a.dayuh.isTransition) {
+			if(a.dayuh.desiredRotation < a.dayuh.actualRotation) {
+				a.dayuh.actualRotation -= a.dayuh.baseRotateUnit
+				a.dayuh.actualRotation = Math.floor(a.dayuh.actualRotation)
+				a.dayuh.needsRotation=true
+			}
+			else
+			if(a.dayuh.desiredRotation > a.dayuh.actualRotation) {
+				a.dayuh.actualRotation += a.dayuh.baseRotateUnit
+				a.dayuh.actualRotation = Math.floor(a.dayuh.actualRotation)
+				a.dayuh.needsRotation=true
+			}
+			else {
+				a.dayuh.initialOffset = skel.eulerAngles.y
+			}
+			
+		}
+		*/
+		/**/
+		if(a.dayuh.pose == "walk") {
+			a.PlayChayoosFade("mihawlaych")
+		}
+		
+		if(a.dayuh.pose == "stand") {
+			a.PlayChayoosFade("stand")
+		}
+		
+	}
+})
+var qqk/*
+
+		startTalking("DR: "+ a.dayuh.desiredRotation 
+		+"<br>AR: "+ a.dayuh.actualRotation
+		+"<br>BR: "+ a.dayuh.baseRotateUnit
+		+"<br>A:"+skel.eulerAngles.y);*/
+var hhh = new Achdus.Domem({
+	model: "goofeem/shmawYisroyayl.gltf",
+//	model: "goofeem/shma.gltf",
+	position: {
+		x:-3,
+		y: -2
+	},
+	Init: function(a) {
+		var cl = a.HoyseefComponent("mesh",a.gameObject)
+		cl.convex = true
+		cl.isTrigger = true
+	},
+	HissHavoos: function(A) {
+		
+	},
+	TriggerEnter: function(c) {
+		if(c.gameObject.name == "yoy") {
+			hhh.scale = 0.1
+		//	setAv(hhh, o, "Bone.035")
+		}
+		
+	}
+})
+
+function startTalking(txt) {
+	dial.style.display = ""
+	dial.innerHTML = txt//[0].st
+}
+
+function stopTalking(txt) {
+	dial.style.display = "none"
+	dial.innerHTML = ""
+}
+/*
+
+	
+	
+*/
+/*
+function gawsh(op) {
+	if(!op) op = {}
+	var aktEn = op.action || op.piooluh || 
+		op.onenter || op.neechnas
+	var aktEx = op.onexit || op.yoytzay
+	var txt = op.txt || op.text
+	var range = op.range || 8
+	var yisoyd = op.yisoyd || op.yesod || op.base
+	var nm = op.name || op.shaym;
+	if(yisoyd) {
+		var coyl = new ATZMUS.Domem({
+			gameObject: "cylinder",
+			Init: function(a) {
+				a.isTrigger=true
+			},
+			TriggerEnter:function(c) {
+				if(typeof(aktEn) == "function") aktEn(c)
+				if(nm)
+				if(c.gameObject.name == nm) {	
+					startTalking(txt)
+				}
+			},
+			TriggerExit: function(c) {
+				if(typeof(aktEn) == "function") aktEx(c)
+				if(nm)
+				if(c.gameObject.name == nm) {
+					stopTalking()
+				}
+			}
+		})
+		coyl.pashut.renderer.enabled = false
+		
+		hisslawbish(coyl, yisoyd)
+		coyl.scale.x = coyl.scale.z = range
+	}
+}
+
+
+var k = new ATZMUS.Medabeir({
+	model: "goofeem/awduh6m.gltf",
+	position:{
+		x:5
+	},
+	name: "wow",
+	Init: function(s) {
+		s.PlayChayoos("stand")
+		gawsh({
+			yesod: s,
+			txt: [
+				{
+					st: "Hello there!"
+				}
+			],
+			name: "yoy"
+		})
+		//s.gameObject.tag = "Player"
+	}
+})*/
+</script>
